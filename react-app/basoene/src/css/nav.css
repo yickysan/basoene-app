@@ -1,0 +1,44 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    inset: 0;
+    background: var(--light-clr);
+    margin-bottom: 5rem;
+    z-index: 1000;
+  
+  }
+  
+  header img{
+    width: 20rem;
+    height: 8rem;
+    object-fit: cover;
+  }
+  
+  nav ul{
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 2rem;
+    padding: 2rem 1rem;
+    
+  }
+  
+  nav a{
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: black;
+    padding: 1rem 2rem;
+    border-radius: 0.6rem;
+    transition: all ease 0.5s;
+  }
+  
+  nav a:focus, nav a:hover{
+    background: var(--sec-clr);
+  }
+  
+  nav a:focus{
+    outline: auto;
+  }
+  
