@@ -1,29 +1,31 @@
 import React from "react";
-
 import { useState } from "react";
+import { Product } from "../App";
 import {BiSolidXSquare} from "react-icons/bi"
 
-type Product = {
-    id : number | null;
-    product_name: string | null;
-    product_category: string | null;
-    quantity: number | null;
-    unit_price: number | null;
+
   
+
+  interface UpdateProps{
+    update: Function,
+    productUpdated: Product,
+    request: string,
+    refresh: Function
   }
 
-const Update = (props: {update: Function,  productUpdated: Product,
-                        request: string, refresh: Function}) => {
+const Update = (props: UpdateProps) => {
 
-    const toggleUpdate = props.update
-    const product = props.productUpdated
-    const request = props.request
-    const fetchProducts = props.refresh
+    const toggleUpdate = props.update;
+    const product = props.productUpdated;
+    const request = props.request;
+    const fetchProducts = props.refresh;
 
-    const [productName, setProductName] = useState(product.product_name)
-    const [productCategory, setProductCategory] = useState(product.product_category)
-    const [quantity, setQuantity] = useState(product.quantity)
-    const [unitPrice, setUnitPrice] = useState(product.unit_price)
+    const [productName, setProductName] = useState(product.product_name);
+    const [productCategory, setProductCategory] = useState(product.product_category);
+    const [quantity, setQuantity] = useState(product.quantity);
+    const [unitPrice, setUnitPrice] = useState(product.unit_price);
+
+    const [submitting, setSubmitting] = useState(false);
     
    const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault()
@@ -34,15 +36,19 @@ const Update = (props: {update: Function,  productUpdated: Product,
             unit_price: unitPrice,
             id: product.id
         }
+         
+        setSubmitting(true);
+
         if(request === "PUT"){
             fetch("http://localhost:8000/products/" + updatedProduct.id, {
                 method : request, 
                 headers : {"Content-Type": "application/json"},
                 body : JSON.stringify(updatedProduct)
             }).then(() => {
-                toggleUpdate()
+                setSubmitting(false);
+                toggleUpdate();
     
-            }).then(() => {fetchProducts()})
+            }).then(() => {fetchProducts();})
            ;
         } else if(request === "POST"){
             fetch("http://localhost:8000/products", {
@@ -50,9 +56,9 @@ const Update = (props: {update: Function,  productUpdated: Product,
                 headers : {"Content-Type": "application/json"},
                 body : JSON.stringify(updatedProduct)
             }).then(() => {
-                toggleUpdate()
-            }).then(() => {fetchProducts()})
-           ;
+                setSubmitting(false);
+                toggleUpdate();
+            }).then(() => {fetchProducts();})
         }
        
         
@@ -73,7 +79,7 @@ const Update = (props: {update: Function,  productUpdated: Product,
                         <div className="input-container">
                             <label>Product</label>
                             <input type="text" 
-                            value={productName as string}
+                            value={productName}
                             onChange={(e) => {setProductName(e.target.value)}}>
                                 
                             </input>
@@ -83,7 +89,7 @@ const Update = (props: {update: Function,  productUpdated: Product,
                         <div className="input-container">
                             <label>Category</label>
                             <input type="text" 
-                            value={productCategory as string}
+                            value={productCategory}
                             onChange={(e) => {setProductCategory(e.target.value)}}>
                                 
                             </input>
@@ -92,7 +98,7 @@ const Update = (props: {update: Function,  productUpdated: Product,
                         <div className="input-container">
                             <label>Quantity</label>
                             <input type="number"
-                            value={quantity as number}
+                            value={quantity}
                             onChange={(e) => {setQuantity(e.target.value as unknown as number)}}>
                                 
                             </input>
@@ -101,15 +107,23 @@ const Update = (props: {update: Function,  productUpdated: Product,
                         <div className="input-container">
                             <label>Unit Price</label>
                             <input type="number" 
-                            value={unitPrice as number}
+                            value={unitPrice}
                             onChange={(e) => {setUnitPrice(e.target.value as unknown as number)}}>
                                 
                             </input>
                         </div>
 
-                        <button className="submit-product">Submit</button>
-                    
-                    
+                        {!submitting && 
+                        <button className="submit-product">
+                            Submit
+                        </button>
+                        }
+                        {submitting && 
+                        <button className="submit-product" disabled>
+                                <div className="submitting"></div>
+                        </button>
+                        }
+                                
                     </div>
                     
                 </form>

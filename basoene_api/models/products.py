@@ -1,6 +1,7 @@
-from sqlmodel import Field, SQLModel, create_engine
+from sqlmodel import Field, SQLModel, create_engine, Relationship
 from typing import Optional
 from datetime import datetime, date
+from pydantic import BaseModel
 
 
 DB = "basoene.sqlite3"
@@ -20,6 +21,20 @@ class ProductSales(SQLModel, table=True):
     time: datetime = Field(default_factory=datetime.now, nullable=False)
     quantity: int
     product_id: int = Field(foreign_key="products.id")
+
+
+
+class SalesPost(BaseModel):
+    product_id: int
+    quantity: int
+
+
+class Sales(BaseModel):
+    product_name: str
+    product_sales: ProductSales
+
+
+
 
 
 def create_tables() -> None:

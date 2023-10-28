@@ -20,16 +20,16 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    gap: 2rem;
+    gap: 1rem;
     padding: 2rem 1rem;
     
   }
   
   nav a{
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 500;
     color: black;
-    padding: 1rem 2rem;
+    padding: 0.5rem;
     border-radius: 0.6rem;
     transition: all ease 0.5s;
   }

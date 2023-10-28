@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import basoene_logo from"./images/basoene_logo.png"
+import basoene_logo from"../images/basoene_logo.png"
 
 const Nav = () => {
     return ( 

@@ -1,55 +1,34 @@
 import React from "react";
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { Product } from "../App";
 import Update from "./update";
 
 
-type Product = {
-    id : number | null;
-    product_name: string | null;
-    product_category: string | null;
-    quantity: number | null;
-    unit_price: number | null;
-  
-  }
+interface HomeProps{
+    data: Product[],
+    fetch : Function,
+    fetchError: string
+}
 
-function Home() {
-    const [data, setData] = useState<Product[]>(
-        [{id:null, product_name:null, product_category:null, quantity: null, unit_price: null}]
-        )
+function Home(props: HomeProps) {
     
-    const [updateProduct, setUpdateProduct] = useState<Product>({id:null, product_name:null, product_category:null, quantity: null, unit_price: null})
+    const data = props.data;
+    const fetchProducts = props.fetch;
+    const error = props.fetchError;
     
-    const [update, setUpdate] = useState(false)
 
-    const [request, setRequest] = useState("")
+    // state for updating and adding new data
+    const [updateProduct, setUpdateProduct] = useState<Product>(
+        {id:null, product_name:"", product_category:"", quantity:0, unit_price:0}
+        );
+    
+    const [update, setUpdate] = useState(false);
+    const [request, setRequest] = useState("");
+
+    // state for deleting data
     const [deleteId, setId] = useState<number|null>(null)
 
-      const url: string = "http://127.0.0.1:8000/products"
-
-      const fetchProducts = (): void => {
-        fetch(url)
-            .then(response => {
-                if (!response.ok){
-                    throw new Error("Could not get messages!")
-                }
-                return response.json();
-            })
-            .then(result => {
-                setData(result);
-            })
-            .catch(error => {
-               console.log(error)
-            });
-
-      }
-
-
-      useEffect(() => {
-        // const abortController = new AbortController();
-        fetchProducts()
-        
-    }, []);
-
+      
     const handleDelete = (id: number) => {
         fetch("http://localhost:8000/products/" + id, 
         {method : "DELETE"})
@@ -57,6 +36,7 @@ function Home() {
             console.log("Product deleted successfully!");
             toggleModal("close", id)
         }).then(() => {fetchProducts()})
+        
         
 
     }
@@ -105,6 +85,7 @@ function Home() {
          productUpdated = {updateProduct} 
          request={request}
          refresh = {fetchProducts}/>}
+
         <dialog className="delete-dialog">
             <div>
                 <p>Are you sure you want to delete this product from the table?</p>
@@ -137,7 +118,8 @@ function Home() {
                 </tr>
             </thead>
             <tbody>
-                {data!.map((product: Product) =>(
+               
+                {data.map((product: Product) =>(
                             <tr key={product.id}>
                                 <td>{product.product_name}</td>
                                 <td>{product.product_category}</td>
@@ -156,6 +138,13 @@ function Home() {
                         
                     </tbody>
             </table>
+            {error && <div className="fetch-error"> 
+                        <p>Error: {error}</p>
+
+                        <button className="refresh" onClick={() => {document.location.reload()}}>Refresh</button>
+                    
+                    </div>
+            }
       </div>
       
     </div>

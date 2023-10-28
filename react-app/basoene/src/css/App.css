@@ -19,8 +19,9 @@ a{
 :root{
   --main-clr: rgb(165, 80, 199);
   --sec-clr: rgb(202, 189, 207);
-  --main_clr-transparent: rgba(165, 80, 199, 0.5);
+  --main-clr-transparent: rgba(165, 80, 199, 0.5);
   --light-clr: rgb(232, 235, 234);
+  --box-shadow: 0 0 1rem rgba(0,0,0,0.3);
 }
 
 body{
@@ -33,12 +34,16 @@ body{
 
 .table-wrapper{
   margin-top: 2rem;
-  width: min(900px, 100% -3rem);
-  margin-inline: 2rem;
+  width: 90%;
+  margin-inline: auto;
 }
 
 .table-container{
   max-width: 100%;
+  padding: 2rem 1rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--box-shadow);
+  background: var(--light-clr);
 }
 
 table{
@@ -56,13 +61,13 @@ th, td, caption{
 
 th{
   text-align: left;
-  background: var(--main_clr-transparent);
+  background: var(--main-clr-transparent);
 
 }
 
 
 tr:nth-of-type(2n){
-  background: rgba(0,0,0,0.1);
+  background: rgba(0,0,0,0.2);
 }
 
 caption{
@@ -119,10 +124,33 @@ table button:focus-visible{
  
 }
 
+.fetch-error{
+  display: grid;
+  justify-content: center;
+  font-size: 1.5rem;
+  gap: 1rem;
+  font-weight: 500;
+  color: red;
+}
+
+.refresh{
+  background: var(--main-clr);
+  color: white;
+  height: 3rem;
+  width: 6rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 1rem rgba(0,0,0,0.2);;
+  transition: linear 0.5s;
+}
+
+.refresh:hover{
+  scale: 1.05;
+}
+
 dialog{
   color: rgba(0,0,0,);
   translate: 1rem 2rem;
-  box-shadow: 0 0 2rem rgba(0,0,0,0.3);
+  box-shadow: var(--box-shadow);
   height: 12rem;
   font-weight: 500;
   background: var(--light-clr);
@@ -148,6 +176,12 @@ dialog button{
 
 dialog::backdrop{
   background: rgba(0,0,0,0.2)
+}
+
+.flex-btn{
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 5rem;
 }
 
 
