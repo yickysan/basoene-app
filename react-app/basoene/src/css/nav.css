@@ -4,8 +4,8 @@ header{
     position: sticky;
     inset: 0;
     background: var(--light-clr);
-    margin-bottom: 5rem;
     z-index: 1000;
+    box-shadow: 0 0 1rem var(--main-clr-transparent);
   
   }
   

@@ -1,8 +1,8 @@
 from fastapi import APIRouter
-from fastapi import Response, Depends
+from fastapi import Response, Depends, HTTPException
 from sqlmodel import Session, select
 from typing import Generator
-from basoene_api.models.products import Products, engine
+from basoene_api.models.products import Products, ProductsPost, engine
 
 router = APIRouter()
 
@@ -18,7 +18,7 @@ async def home(session: Session = Depends(get_session)):
     return result
 
 
-@router.get("/products/{product_name}/", response_model = list[Products] | str)
+@router.get("/products/{product_name}/", response_model = list[Products])
 async def get_product(product_name: str, response: Response, session: Session = Depends(get_session)):
 
     products = session.exec(
@@ -26,21 +26,21 @@ async def get_product(product_name: str, response: Response, session: Session = 
     ).all()
 
     if len(products) < 1:
-        response.status_code = 404
-        return "Products not found"
+        raise HTTPException(status_code=404, headers={"message": "Product not found"})
     
     return products
     
 @router.post("/products", response_model = Products)
-async def add_product(product: Products, session: Session = Depends(get_session)):
-    session.add(product)
+async def add_product(product: ProductsPost, session: Session = Depends(get_session)):
+    db_product = Products.from_orm(product)
+    session.add(db_product)
     session.commit()
-    session.refresh(product)
+    session.refresh(db_product)
 
     return product
 
 
-@router.put("/products/{id}", response_model = Products | str)
+@router.put("/products/{id}", response_model = Products)
 async def update_product(id: int, 
                    product: Products,
                    response: Response,
@@ -49,8 +49,7 @@ async def update_product(id: int,
     db_product = session.get(Products, id)
 
     if not db_product:
-        response.status_code = 404
-        return "Product not found"
+       raise HTTPException(status_code=404, headers={"message": "Product not found"})
 
     updated_data = product.dict(exclude_unset=True)
 
@@ -72,8 +71,7 @@ async def delete_product(id: int,
     product = session.get(Products, id)
 
     if not product:
-        response.status_code = 404
-        return "Product not found"
+        raise HTTPException(status_code=404, headers={"message": "Product not found"})
     
     session.delete(product)
     session.commit()

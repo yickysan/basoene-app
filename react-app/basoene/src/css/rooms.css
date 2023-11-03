@@ -1,0 +1,36 @@
+.bookings{
+    margin-top: 2rem;
+    margin-inline: 1rem;
+}
+
+.flex-body{
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 1rem;
+}
+
+.room-card{
+    background: var(--main-clr-transparent);
+    width: 12rem;
+    aspect-ratio: 16/9;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: var(--box-shadow);
+}
+
+.status{
+    color: green;
+}
+
+.status.occupied{
+    color: rgb(216, 99, 32);
+}
+
+.room-grid{
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 65% 35%;
+    gap: 2rem;
+    padding: 1rem;
+}

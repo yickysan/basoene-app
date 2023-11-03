@@ -52,17 +52,23 @@ const SellProduct = (props: SellProps) => {
         <div className="sales-form">
             <form className="sell" onSubmit={handleSubmit}>
                 <div className="sales-input">
-                    <label>Products</label>
-                    <input name="product" 
-                    list="product-list" 
+                    <label>Drinks</label>
+                    <input name="Drink" 
+                    list="drink-list" 
                     onChange={(e) =>{setFormProduct(e.target.value)}}
                     required/>
-                    <datalist id = "product-list">
+                    <datalist id = "drink-list">
                         {
-                            productData.map((product: Product) => (
-                                <option key={product.id} value={product.product_name}/>
-                            ))
-                        }
+                            productData.map((product: Product) => {
+                                if(product.quantity !== 0){
+                                 return <option key={product.id} value={product.product_name}/>
+                                } else{
+                                    return
+                                }
+                            }
+                            )
+                            }
+                        
 
                     </datalist>
                 </div>
@@ -76,7 +82,7 @@ const SellProduct = (props: SellProps) => {
                 </div>
                 {!submitting && 
                     <button className="submit-sales">
-                        Submit
+                        Sell
                     </button>
                 }
                 {submitting && 

@@ -1,37 +1,63 @@
 from fastapi import APIRouter
-from fastapi import Response, Depends
+from fastapi import Response, Depends, HTTPException
 from sqlmodel import Session, select
 from typing import Generator
-from basoene_api.models.rooms import Bookings, engine
+from datetime import date
+from basoene_api.models.rooms import Bookings, Rooms, BookRoom, engine
 from basoene_api.routes.rooms import get_session
 
 router = APIRouter()
 
-@router.get("/bookings", response_model = list[Bookings])
+@router.get("/bookings")
 async def bookings(session: Session = Depends(get_session)):
     
-    query = select(Bookings)
+    query = (select(Bookings,Rooms.room_name, Rooms.price_short, Rooms.price_full)
+            .where(Bookings.room_id == Rooms.id))
     result = session.exec(query).all()
     return result
 
 
-@router.get("/rooms/{date}/", response_model = list[Bookings] | str)
-async def get_booking(date: str, response: Response, session: Session = Depends(get_session)):
+@router.get("/bookings/today")
+async def get_todays_bookings(session: Session = Depends(get_session)):
 
-    rooms = session.exec(
-        select(Bookings).where(Bookings.date == date)
+    bookings = session.exec(
+        (select(Bookings, Rooms.room_name, Rooms.price_short, Rooms.price_full)
+         .where(Bookings.booking_date == date.today())
+         .where(Bookings.room_id == Rooms.id)
+         .order_by(Bookings.time.desc())
+        )
     ).all()
 
-    if len(rooms) < 1:
-        response.status_code = 404
-        return "Bookings not found"
+    if len(bookings) < 1:
+        raise HTTPException(status_code=404, headers={"message": "No room has been booked today"})
     
-    return rooms
+    return bookings
+
+
+@router.get("/bookings/{date}")
+async def get_bookings(date: str, response: Response, session: Session = Depends(get_session)):
+
+    bookings = session.exec(
+        (select(Bookings, Rooms.room_name, Rooms.price_short, Rooms.price_full)
+         .where(Bookings.booking_date == date)
+         .where(Bookings.room_id == Rooms.id)
+        )
+    ).all()
+
+    if len(bookings) < 1:
+        raise HTTPException(status_code=404, headers={"message": "No room has been booked today"})
     
+    return bookings
+
+
+
+
+   
 @router.post("/bookings", response_model = Bookings)
-async def add_room(booking: Bookings, session: Session = Depends(get_session)):
-    session.add(booking)
+async def book_room(booking: BookRoom, session: Session = Depends(get_session)):
+    db_booking = Bookings.from_orm(booking)
+    session.add(db_booking)
     session.commit()
-    session.refresh(booking)
+    session.refresh(db_booking)
 
     return booking

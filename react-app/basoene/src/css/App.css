@@ -33,7 +33,7 @@ body{
 
 
 .table-wrapper{
-  margin-top: 2rem;
+  margin-top: 5rem;
   width: 90%;
   margin-inline: auto;
 }
@@ -65,6 +65,9 @@ th{
 
 }
 
+tr.empty{
+  outline: 1px solid red;
+}
 
 tr:nth-of-type(2n){
   background: rgba(0,0,0,0.2);

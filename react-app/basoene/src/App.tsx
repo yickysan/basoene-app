@@ -4,9 +4,13 @@ import './css/App.css';
 import "./css/update.css"
 import "./css/nav.css"
 import "./css/sales.css"
+import "./css/rooms.css"
+import "./css/analytics.css"
 import Home from "./components/home"
 import Nav from './components/nav';
 import SalesPage from './components/sales';
+import Analytics from './components/Analytics';
+import BookingPage from './components/booking';
 
 export type Product = {
   id : number | null;
@@ -61,6 +65,9 @@ function App() {
             <Route path="/" element=
               {<Home data={data} fetch={fetchProducts} fetchError={error as string}/>} />
             <Route path="/sales" element={<SalesPage data={data} fetch={fetchProducts}/>} />
+            
+            <Route path="/analytics" element={<Analytics/>} />
+            <Route path="/rooms" element={<BookingPage/>} />
             
           </Routes>
       </div>

@@ -15,6 +15,7 @@ function Home(props: HomeProps) {
     const data = props.data;
     const fetchProducts = props.fetch;
     const error = props.fetchError;
+
     
 
     // state for updating and adding new data
@@ -67,14 +68,16 @@ function Home(props: HomeProps) {
 
         const modal = document.querySelector(".delete-dialog") as HTMLDialogElement;
 
+        console.log(modal.getAttribute("open"))
+
         if(state === "open"){
             setId(id);
             modal.showModal();
-            document.body.style.overflowY = "hidden";
+            
         } else{
             setId(null)
             modal.close();
-            document.body.style.overflowY = "auto";
+            
         }
 
     }
@@ -108,10 +111,10 @@ function Home(props: HomeProps) {
             </caption>
             <thead>
                 <tr>
-                    <th>Product</th>
+                    <th>Drink</th>
                     <th>Category</th>
                     <th>Quantity</th>
-                    <th>Unit Price</th>
+                    <th>Unit Price (₦)</th>
                     <th></th>
                     <th></th>
 
@@ -120,7 +123,8 @@ function Home(props: HomeProps) {
             <tbody>
                
                 {data.map((product: Product) =>(
-                            <tr key={product.id}>
+                            <tr key={product.id} 
+                            className={product.quantity === 0? "empty": "not-empty"}>
                                 <td>{product.product_name}</td>
                                 <td>{product.product_category}</td>
                                 <td>{product.quantity}</td>

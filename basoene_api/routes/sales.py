@@ -11,7 +11,7 @@ router = APIRouter()
 @router.get("/sales") 
 async def sales(session: Session = Depends(get_session)):
     
-    query = select(Products.product_name, ProductSales).where(Products.id == ProductSales.product_id)
+    query = select(Products.product_name, Products.unit_price, ProductSales).where(Products.id == ProductSales.product_id)
     result = session.exec(query).all()
     return result
 
@@ -19,7 +19,7 @@ async def sales(session: Session = Depends(get_session)):
 @router.get("/sales/today")
 async def get_todays_sale(response: Response, session: Session = Depends(get_session)):
     sales = session.exec(
-        (select(Products.product_name, ProductSales)
+        (select(Products.product_name, Products.unit_price, ProductSales)
          .where(Products.id == ProductSales.product_id)
          .where(ProductSales.sale_date == date.today())
          .order_by(ProductSales.time.desc())
@@ -32,22 +32,22 @@ async def get_todays_sale(response: Response, session: Session = Depends(get_ses
     return sales
 
 
-@router.get("/sales/{date}/")
+@router.get("/sales/{date}")
 async def get_sale(date: str, response: Response, session: Session = Depends(get_session)):
 
     sales = session.exec(
-        (select(Products.product_name, ProductSales)
+        (select(Products.product_name, Products.unit_price, ProductSales)
          .where(Products.id == ProductSales.product_id)
          .where(ProductSales.sale_date == date)
          )
     ).all()
 
     if len(sales) < 1:
-         response.status_code = 404
+         raise HTTPException(status_code=404, headers={"message": "No sales record exist"})
     
     return sales
     
-@router.post("/sales", response_model = ProductSales, response_model_exclude_defaults=True)
+@router.post("/sales", response_model = ProductSales)
 async def add_sales(sales: SalesPost, session: Session = Depends(get_session)):
     db_sales = ProductSales.from_orm(sales)
     session.add(db_sales)

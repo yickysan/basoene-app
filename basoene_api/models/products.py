@@ -4,6 +4,7 @@ from datetime import datetime, date
 from pydantic import BaseModel
 
 
+
 DB = "basoene.sqlite3"
 engine = create_engine(f"sqlite:///{DB}", echo=True, connect_args={"check_same_thread": False})
 
@@ -24,18 +25,22 @@ class ProductSales(SQLModel, table=True):
 
 
 
+class ProductsPost(BaseModel):
+    product_name: str 
+    product_category: str
+    unit_price: int
+    quantity: int
+
+
 class SalesPost(BaseModel):
     product_id: int
     quantity: int
 
-
-class Sales(BaseModel):
-    product_name: str
-    product_sales: ProductSales
 
 
 
 
 
 def create_tables() -> None:
-    SQLModel.metadata.create_all(engine)
+    Products.__table__.create(engine)
+    ProductSales.__table__.create(engine)

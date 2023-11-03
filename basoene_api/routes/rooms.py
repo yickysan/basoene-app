@@ -1,8 +1,8 @@
 from fastapi import APIRouter
-from fastapi import Response, Depends
+from fastapi import Response, Depends, HTTPException
 from sqlmodel import Session, select
 from typing import Generator
-from basoene_api.models.rooms import Rooms, engine
+from basoene_api.models.rooms import Rooms, RoomsAdd, engine
 
 router = APIRouter()
 
@@ -19,7 +19,7 @@ async def room_home(session: Session = Depends(get_session)):
     return result
 
 
-@router.get("/rooms/{room_name}/", response_model = list[Rooms] | str)
+@router.get("/rooms/{room_name}/", response_model = list[Rooms])
 async def get_room(room_name: str, response: Response, session: Session = Depends(get_session)):
 
     rooms = session.exec(
@@ -27,21 +27,21 @@ async def get_room(room_name: str, response: Response, session: Session = Depend
     ).all()
 
     if len(rooms) < 1:
-        response.status_code = 404
-        return "Products not found"
+        raise HTTPException(status_code=404, headers={"message": "Room not found"})
     
     return rooms
     
 @router.post("/rooms", response_model = Rooms)
-async def add_room(room: Rooms, session: Session = Depends(get_session)):
-    session.add(room)
+async def add_room(room: RoomsAdd, session: Session = Depends(get_session)):
+    db_room = Rooms.from_orm(room)
+    session.add(db_room)
     session.commit()
-    session.refresh(room)
+    session.refresh(db_room)
 
     return room
 
 
-@router.put("/rooms/{id}", response_model = Rooms | str)
+@router.put("/rooms/{id}", response_model = Rooms)
 async def update_room(id: int, 
                    room: Rooms,
                    response: Response,
@@ -50,8 +50,7 @@ async def update_room(id: int,
     db_room = session.get(Rooms, id)
 
     if not db_room:
-        response.status_code = 404
-        return "Room not found"
+        raise HTTPException(status_code=404, headers={"message": "Room not found"})
 
     updated_data = room.dict(exclude_unset=True)
 
@@ -73,8 +72,7 @@ async def delete_room(id: int,
     room = session.get(Rooms, id)
 
     if not room:
-        response.status_code = 404
-        return "Room not found"
+        raise HTTPException(status_code=404, headers={"message": "Room not found"})
     
     session.delete(room)
     session.commit()
