@@ -3,7 +3,6 @@ from fastapi import Response, Depends, HTTPException
 from sqlmodel import Session, select, func, extract
 from typing import Generator
 from datetime import date
-import pandas as pd
 from basoene_api.models.products import Products, ProductSales, engine
 from basoene_api.models.product_analysis import DateResults, ProductResults, HourResults, DayResults, MonthResults, SalesSummary
 
