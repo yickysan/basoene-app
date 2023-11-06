@@ -32,8 +32,8 @@ app.add_middleware(
 
 @app.on_event("startup")
 async def create_tables():
-    product_tables()
-    room_tables()
+        product_tables()
+        room_tables()
 
    
 

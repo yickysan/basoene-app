@@ -1,11 +1,17 @@
+import os
 from sqlmodel import Field, SQLModel, create_engine
 from pydantic import BaseModel
 from typing import Optional
 from datetime import datetime, date
+from dotenv import load_dotenv
 
 
-DB = "rooms.sqlite3"
-engine = create_engine(f"sqlite:///{DB}", echo=True, connect_args={"check_same_thread": False})
+load_dotenv("db.env")
+DB_URI = os.environ["DATABASE_URI"]
+# DB = "rooms.sqlite3"
+# engine = create_engine(f"sqlite:///{DB}", echo=True, connect_args={"check_same_thread": False})
+
+engine = create_engine(DB_URI, echo=True)
 
 class Rooms(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
