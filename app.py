@@ -1,11 +1,11 @@
 from fastapi import FastAPI, Response, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from sqlmodel import Session, select
-import json
+import sqlite3
 from typing import Generator
 
-from basoene_api_models.products import create_tables as product_tables
-from basoene_api_models.rooms import create_tables as room_tables
+from basoene_api.models.products import create_tables as product_tables
+from basoene_api.models.rooms import create_tables as room_tables
 from basoene_api.routes import product_analytics, products, rooms, sales, bookings, room_analytics
 
 
@@ -30,13 +30,16 @@ app.add_middleware(
 )
 
 
-app.on_event("start_up")
+@app.on_event("startup")
 async def create_tables():
     product_tables()
     room_tables()
 
+   
 
-app.get("/")
+
+
+@app.get("/")
 async def home():
     return {"Message": "Welcome!"}
 

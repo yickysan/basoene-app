@@ -41,5 +41,5 @@ class BookRoom(BaseModel):
 
 
 def create_tables() -> None:
-    Rooms.__table__.create(engine)
-    Bookings.__table__.create(engine)
+    SQLModel.metadata.tables["rooms"].create(engine, checkfirst=True)
+    SQLModel.metadata.tables["bookings"].create(engine, checkfirst=True)

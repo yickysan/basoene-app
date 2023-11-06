@@ -42,5 +42,5 @@ class SalesPost(BaseModel):
 
 
 def create_tables() -> None:
-    Products.__table__.create(engine)
-    ProductSales.__table__.create(engine)
+    SQLModel.metadata.tables["products"].create(engine, checkfirst=True)
+    SQLModel.metadata.tables["productsales"].create(engine, checkfirst=True)
