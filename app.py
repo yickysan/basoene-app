@@ -4,6 +4,8 @@ from sqlmodel import Session, select
 import json
 from typing import Generator
 
+from basoene_api_models.products import create_tables as product_tables
+from basoene_api_models.rooms import create_tables as room_tables
 from basoene_api.routes import product_analytics, products, rooms, sales, bookings, room_analytics
 
 
@@ -26,6 +28,17 @@ app.add_middleware(
     allow_headers = ["*"],
     allow_methods = ["*"]
 )
+
+
+app.on_event("start_up")
+async def create_tables():
+    product_tables()
+    room_tables()
+
+
+app.get("/")
+async def home():
+    return {"Message": "Welcome!"}
 
 
 

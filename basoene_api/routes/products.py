@@ -7,11 +7,11 @@ from basoene_api.models.products import Products, ProductsPost, engine
 router = APIRouter()
 
 def get_session() -> Generator[Session, None, None]:
-    with Session(engine, autoflush=True) as session:
+    with Session(engine) as session:
         yield session
 
 @router.get("/products", response_model = list[Products])
-async def home(session: Session = Depends(get_session)):
+async def products(session: Session = Depends(get_session)):
     
     query = select(Products)
     result = session.exec(query).all()
