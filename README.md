@@ -1,2 +1,2 @@
 # basoene-app
-A simple inventory management app
+A simple inventory and bookings management app
