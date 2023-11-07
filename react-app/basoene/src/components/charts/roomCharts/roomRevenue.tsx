@@ -45,7 +45,7 @@ import {
   
    const RoomRevenue = () => {
   
-      const {data, isLoading, error} = useFetchChartData("room");
+      const data = useFetchChartData("room").data;
   
       const chartData = {
           labels : data.map((value: RoomResult) => (value.room_name)).reverse(),

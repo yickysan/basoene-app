@@ -45,7 +45,7 @@ ChartJS.register(
 
  const SalesHour = () => {
 
-    const {data, isLoading, error} = useFetchChartData("product/hour");
+    const data = useFetchChartData("product/hour").data;
 
     const chartData = {
         labels : data.map((value: HourResult) => (value.hour as unknown as string)).reverse(),

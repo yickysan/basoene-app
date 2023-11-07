@@ -60,7 +60,7 @@ import {
   
    const RoomRevenueDay = () => {
   
-      const {data, isLoading, error} = useFetchChartData("room/daily_revenue");
+      const data = useFetchChartData("room/daily_revenue").data;
   
       const chartData = {
           labels : data.map((value: DayResult) => (dayMap.get(value.day))),

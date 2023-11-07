@@ -29,7 +29,7 @@ const SellProduct = (props: SellProps) => {
 
         const newSales = {product_id: productId, quantity: formQuantity}
 
-        fetch("http://localhost:8000/sales", {
+        fetch(`${process.env.REACT_APP_URL}/sales`, {
                 method : "POST", 
                 headers : {"Content-Type": "application/json"},
                 body : JSON.stringify(newSales)
@@ -38,7 +38,7 @@ const SellProduct = (props: SellProps) => {
             }).then(() => {fetchSales();})
             .then(() => {setFormProduct(""); setFormQuantity(0);})
 
-        fetch("http://localhost:8000/products/" + productId, {
+        fetch(`${process.env.REACT_APP_URL}/products/` + productId, {
             method : "PUT", 
             headers : {"Content-Type": "application/json"},
             body : JSON.stringify(requiredProduct)
@@ -63,7 +63,7 @@ const SellProduct = (props: SellProps) => {
                                 if(product.quantity !== 0){
                                  return <option key={product.id} value={product.product_name}/>
                                 } else{
-                                    return
+                                    return ""
                                 }
                             }
                             )

@@ -43,7 +43,7 @@ import {
 
 const RevenueTrend = () => {
 
-    const {data, isLoading, error} = useFetchChartData("room/date");
+    const data = useFetchChartData("room/date").data;
 
     const chartData = {
         labels : data.map((value: DateResult) => (value.booking_date)),

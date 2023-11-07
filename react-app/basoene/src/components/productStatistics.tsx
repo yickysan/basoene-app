@@ -3,7 +3,7 @@ import SalesTrend from "./charts/productCharts/salesTrend";
 import SalesHour from "./charts/productCharts/hourlySales";
 import SalesProduct from "./charts/productCharts/productSales";
 import SalesDay from "./charts/productCharts/dailySales";
-import {useFetchSalesSummary, salesSummary} from "../helper/fetchChartData";
+import {useFetchSalesSummary} from "../helper/fetchChartData";
 
 
 

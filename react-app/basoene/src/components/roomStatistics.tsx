@@ -3,7 +3,7 @@ import RevenueTrend from "./charts/roomCharts/revenueTrend";
 import  BookingCount from "./charts/roomCharts/bookingHourCount";
 import RoomRevenue from "./charts/roomCharts/roomRevenue";
 import RoomRevenueDay from "./charts/roomCharts/dailyRevenue";
-import { useFetchBookingsSummary, bookingsSummary } from "../helper/fetchChartData";
+import { useFetchBookingsSummary} from "../helper/fetchChartData";
 
 
 interface statsProps{

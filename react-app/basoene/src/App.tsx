@@ -22,6 +22,7 @@ export type Product = {
 }
 
 
+
 function App() {
   // states for fetching data
   const [data, setData] = useState<Product[]>(
@@ -30,7 +31,8 @@ function App() {
 
     const [error, setError] = useState<string|null>(null);
 
-    const url: string = "http://127.0.0.1:8000/products"
+  
+    const url: string = `${process.env.REACT_APP_URL}/products`
 
     const fetchProducts = (): void => {
 

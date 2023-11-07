@@ -40,7 +40,7 @@ const Update = (props: UpdateProps) => {
         setSubmitting(true);
 
         if(request === "PUT"){
-            fetch("http://localhost:8000/products/" + updatedProduct.id, {
+            fetch(`${process.env.REACT_APP_URL}/products/` + updatedProduct.id, {
                 method : request, 
                 headers : {"Content-Type": "application/json"},
                 body : JSON.stringify(updatedProduct)
@@ -51,7 +51,7 @@ const Update = (props: UpdateProps) => {
             }).then(() => {fetchProducts();})
            ;
         } else if(request === "POST"){
-            fetch("http://localhost:8000/products", {
+            fetch(`${process.env.REACT_APP_URL}/products`, {
                 method : request, 
                 headers : {"Content-Type": "application/json"},
                 body : JSON.stringify(updatedProduct)

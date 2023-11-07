@@ -29,9 +29,11 @@ function Home(props: HomeProps) {
     // state for deleting data
     const [deleteId, setId] = useState<number|null>(null)
 
+    console.log(process.env.REACT_APP_URL);
+
       
     const handleDelete = (id: number) => {
-        fetch("http://localhost:8000/products/" + id, 
+        fetch(`${process.env.REACT_APP_URL}/products/` + id, 
         {method : "DELETE"})
         .then(() => {
             console.log("Product deleted successfully!");

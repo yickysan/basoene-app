@@ -22,12 +22,12 @@ const Analytics = () => {
                 <div className="controls">
                     <h2>Sales Performance</h2>
                     <div className="analysis-option">
-                        <div className={`button-container ${category == "drinks"? "active":""}`} >
+                        <div className={`button-container ${category === "drinks"? "active":""}`} >
                             <button type="button" 
                             onClick={() => {toggleCategory("drinks")}}>
                                 Drinks</button>
                         </div>
-                        <div className={`button-container ${category == "rooms"? "active":""}`}>
+                        <div className={`button-container ${category === "rooms"? "active":""}`}>
                             <button type="button"
                             onClick={() => {toggleCategory("rooms")}}>
                                 Rooms</button>

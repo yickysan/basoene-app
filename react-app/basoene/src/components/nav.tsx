@@ -1,13 +1,13 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import basoene_logo from"../images/basoene_logo.png"
+import basoenelogo from"../images/basoenelogo.png"
 
 const Nav = () => {
     return ( 
         
         <header>
             <picture className="logo">
-                <img src={basoene_logo} alt="logo for basoene snug"></img>
+                <img src={basoenelogo} alt="logo for basoene snug"></img>
            </picture>
             <nav className="navlist">
                 <ul>

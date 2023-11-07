@@ -45,7 +45,7 @@ import {
   
    const SalesProduct = () => {
   
-      const {data, isLoading, error} = useFetchChartData("product");
+      const data = useFetchChartData("product").data;
   
       const chartData = {
           labels : data.map((value: ProductResult) => (value.product_name)).reverse(),

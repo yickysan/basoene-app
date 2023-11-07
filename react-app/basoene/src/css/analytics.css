@@ -68,11 +68,15 @@
 }
 
 .button-container.active{
-    background: var(--sec-clr);
+    border-bottom: 2px solid var(--sec-clr);
 }
 
 .button-container button:hover{
     background: var(--sec-clr);
+}
+
+.button-container button:focus-visible{
+    outline: 2px solid white;
 }
 
 .summary{
@@ -96,6 +100,10 @@
 
 .summary p:hover{
     background: var(--sec-clr);
+}
+
+.summary p:focus{
+    outline: 2px solid white;
 }
 
 .stat-title h3{

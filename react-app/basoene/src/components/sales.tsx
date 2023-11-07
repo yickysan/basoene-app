@@ -62,7 +62,7 @@ const SalesPage = (props: SalesProps) => {
 
     
     
-    const url: string = "http://localhost:8000/sales/today"
+    const url: string = `${process.env.REACT_APP_URL}/sales/today`
 
     const fetchSales = (): void => {
         fetch(url)

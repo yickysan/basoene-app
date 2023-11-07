@@ -43,7 +43,7 @@ import {
 
 const SalesTrend = () => {
 
-    const {data, isLoading, error} = useFetchChartData("product/date");
+    const data = useFetchChartData("product/date").data;
 
     const chartData = {
         labels : data.map((value: DateResult) => (value.sale_date)),

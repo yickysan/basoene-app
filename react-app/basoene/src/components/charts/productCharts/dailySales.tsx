@@ -60,7 +60,7 @@ import {
   
    const SalesDay = () => {
   
-      const {data, isLoading, error} = useFetchChartData("product/day");
+      const data = useFetchChartData("product/day").data;
   
       const chartData = {
           labels : data.map((value: DayResult) => (dayMap.get(value.day))),

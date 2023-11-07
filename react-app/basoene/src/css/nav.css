@@ -1,11 +1,14 @@
 header{
     display: flex;
     justify-content: space-between;
+    width: 100%;
+    height: 5rem;
     position: sticky;
     inset: 0;
     background: var(--light-clr);
     z-index: 1000;
     box-shadow: 0 0 1rem var(--main-clr-transparent);
+    overflow: hidden;
   
   }
   
@@ -37,8 +40,9 @@ header{
   nav a:focus, nav a:hover{
     background: var(--sec-clr);
   }
-  
+
   nav a:focus{
-    outline: auto;
+    outline: none;
   }
+  
   

@@ -45,7 +45,7 @@ import {
   
    const BookingCount = () => {
   
-      const {data, isLoading, error} = useFetchChartData("room/hour_count");
+      const data = useFetchChartData("room/hour_count").data;
   
       const chartData = {
           labels : data.map((value: HourCount) => (value.hour as unknown as string)).reverse(),
