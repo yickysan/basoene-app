@@ -4,13 +4,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlmodel import Session, select
 import sqlite3
 from typing import Generator
-from dotenv import load_dotenv
 
 from basoene_api.models.products import create_tables as product_tables
 from basoene_api.models.rooms import create_tables as room_tables
 from basoene_api.routes import product_analytics, products, rooms, sales, bookings, room_analytics
 
-load_dotenv("db.env")
 
 app = FastAPI()
 app.include_router(products.router)
@@ -21,8 +19,7 @@ app.include_router(product_analytics.router)
 app.include_router(room_analytics.router)
 
 origns = [
-    # "http://localhost:3000"
-    os.environ["origins"]
+    "http://localhost:3000"
 ]
 
 app.add_middleware(

@@ -32,7 +32,7 @@ function App() {
     const [error, setError] = useState<string|null>(null);
 
   
-    const url: string = `${process.env.REACT_APP_URL}/products`
+    const url: string = "localhost:8000/products"
 
     const fetchProducts = (): void => {
 

@@ -29,7 +29,7 @@ const SellProduct = (props: SellProps) => {
 
         const newSales = {product_id: productId, quantity: formQuantity}
 
-        fetch(`${process.env.REACT_APP_URL}/sales`, {
+        fetch("localhost:8000/sales", {
                 method : "POST", 
                 headers : {"Content-Type": "application/json"},
                 body : JSON.stringify(newSales)
@@ -38,7 +38,7 @@ const SellProduct = (props: SellProps) => {
             }).then(() => {fetchSales();})
             .then(() => {setFormProduct(""); setFormQuantity(0);})
 
-        fetch(`${process.env.REACT_APP_URL}/products/` + productId, {
+        fetch("localhost:8000/products/" + productId, {
             method : "PUT", 
             headers : {"Content-Type": "application/json"},
             body : JSON.stringify(requiredProduct)
