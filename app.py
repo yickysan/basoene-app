@@ -21,7 +21,7 @@ app.include_router(product_analytics.router)
 app.include_router(room_analytics.router)
 
 origns = [
-    # "http://localhost:3000"
+    "https://basoenesnug.vercel.app" 
     os.environ["origins"]
 ]
 
