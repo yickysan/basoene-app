@@ -27,7 +27,7 @@ const useFetchChartData = (endpoint: string): fetchResult => {
     const [error, setError] = useState<string|null>(null);
 
     useEffect(() => {
-        fetch("localhost:8000/analysis/" + endpoint)
+        fetch("http://localhost:8000/analysis/" + endpoint)
             .then(response => {
                 if (!response.ok){
                     throw new Error("Could not get messages!")
@@ -54,7 +54,7 @@ export const useFetchBookingsSummary = (): bookingsSummary => {
     
 
     useEffect(() => {
-        fetch("localhost:8000/analysis/room/summary")
+        fetch("http://localhost:8000/analysis/room/summary")
             .then(response => {
                 if (!response.ok){
                     throw new Error("Could not get messages!")
@@ -79,7 +79,7 @@ export const useFetchSalesSummary = (): salesSummary => {
     
 
     useEffect(() => {
-        fetch("localhost:8000/analysis/product/summary")
+        fetch("http://localhost:8000/analysis/product/summary")
             .then(response => {
                 if (!response.ok){
                     throw new Error("Could not get messages!")

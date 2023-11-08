@@ -122,7 +122,7 @@ const BookRoom = (props: BookRoomProps) => {
             </div>
 
             {!submitting && 
-                <button className="submit-sales">
+                <button className="submit-sales" type="submit">
                     Book
                 </button>
             }

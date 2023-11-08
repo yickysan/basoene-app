@@ -81,7 +81,7 @@ const BookingPage = () => {
 
     
     
-    const url: string = `${process.env.REACT_APP_URL}/bookings/today`
+    const url: string = "http://localhost:8000/bookings/today"
 
     const fetchBookings = (): void => {
         fetch(url)
@@ -101,7 +101,7 @@ const BookingPage = () => {
 
 
     const fetchRooms = (): void => {
-        fetch(`${process.env.REACT_APP_URL}/rooms/`)
+        fetch("http://localhost:8000/rooms")
             .then(response => {
                 if (!response.ok){
                     throw new Error("No sales data for today!")

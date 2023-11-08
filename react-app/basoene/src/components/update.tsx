@@ -40,7 +40,7 @@ const Update = (props: UpdateProps) => {
         setSubmitting(true);
 
         if(request === "PUT"){
-            fetch("localhost:8000/products/" + updatedProduct.id, {
+            fetch("http://localhost:8000/products/" + updatedProduct.id, {
                 method : request, 
                 headers : {"Content-Type": "application/json"},
                 body : JSON.stringify(updatedProduct)
@@ -51,7 +51,7 @@ const Update = (props: UpdateProps) => {
             }).then(() => {fetchProducts();})
            ;
         } else if(request === "POST"){
-            fetch("localhost:8000/products", {
+            fetch("http://localhost:8000/products", {
                 method : request, 
                 headers : {"Content-Type": "application/json"},
                 body : JSON.stringify(updatedProduct)
@@ -114,7 +114,7 @@ const Update = (props: UpdateProps) => {
                         </div>
 
                         {!submitting && 
-                        <button className="submit-product">
+                        <button className="submit-product" type="submit">
                             Submit
                         </button>
                         }

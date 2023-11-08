@@ -32,7 +32,7 @@ function App() {
     const [error, setError] = useState<string|null>(null);
 
   
-    const url: string = "localhost:8000/products"
+    const url: string = "http://localhost:8000/products"
 
     const fetchProducts = (): void => {
 

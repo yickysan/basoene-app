@@ -29,7 +29,7 @@ const SellProduct = (props: SellProps) => {
 
         const newSales = {product_id: productId, quantity: formQuantity}
 
-        fetch("localhost:8000/sales", {
+        fetch("http://localhost:8000/sales", {
                 method : "POST", 
                 headers : {"Content-Type": "application/json"},
                 body : JSON.stringify(newSales)
@@ -38,7 +38,7 @@ const SellProduct = (props: SellProps) => {
             }).then(() => {fetchSales();})
             .then(() => {setFormProduct(""); setFormQuantity(0);})
 
-        fetch("localhost:8000/products/" + productId, {
+        fetch("http://localhost:8000/products/" + productId, {
             method : "PUT", 
             headers : {"Content-Type": "application/json"},
             body : JSON.stringify(requiredProduct)
@@ -62,8 +62,6 @@ const SellProduct = (props: SellProps) => {
                             productData.map((product: Product) => {
                                 if(product.quantity !== 0){
                                  return <option key={product.id} value={product.product_name}/>
-                                } else{
-                                    return ""
                                 }
                             }
                             )
@@ -81,7 +79,7 @@ const SellProduct = (props: SellProps) => {
                     required/>
                 </div>
                 {!submitting && 
-                    <button className="submit-sales">
+                    <button className="submit-sales" type="submit">
                         Sell
                     </button>
                 }

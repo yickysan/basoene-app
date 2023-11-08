@@ -62,7 +62,7 @@ const SalesPage = (props: SalesProps) => {
 
     
     
-    const url: string = "localhost:8000/sales/today"
+    const url: string = "http://localhost:8000/sales/today"
 
     const fetchSales = (): void => {
         fetch(url)
