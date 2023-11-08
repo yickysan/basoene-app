@@ -29,7 +29,6 @@ function Home(props: HomeProps) {
     // state for deleting data
     const [deleteId, setId] = useState<number|null>(null)
 
-    console.log(process.env.REACT_APP_URL);
 
       
     const handleDelete = (id: number) => {
