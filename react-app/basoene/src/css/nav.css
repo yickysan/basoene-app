@@ -78,7 +78,7 @@ header{
       background: var(--light-clr-alpha);
       backdrop-filter: blur(1.5rem);
       height: 100svh;
-      width: calc(var(--nav-mobile-width + 2rem));
+      width: 16rem;
       transform: translateX(-100vw);
       transition: 500ms linear;
     }
