@@ -19,7 +19,7 @@ ChartJS.register(
     Legend
   );
 
-  export const options = {
+  const options = {
     indexAxis: "y" as const,
     elements: {
       bar: {
@@ -30,6 +30,7 @@ ChartJS.register(
     plugins: {
       legend: {
         position: "right" as const,
+        display: false
       },
       title: {
         display: true,

@@ -19,9 +19,12 @@ a{
 :root{
   --main-clr: rgb(165, 80, 199);
   --sec-clr: rgb(202, 189, 207);
-  --main-clr-transparent: rgba(165, 80, 199, 0.5);
+  --main-clr-alpha: rgba(165, 80, 199, 0.5);
   --light-clr: rgb(232, 235, 234);
+  --light-clr-alpha: rgb(232, 235, 234, 0.5);
   --box-shadow: 0 0 1rem rgba(0,0,0,0.3);
+  --border-radius: 0.5rem;
+  --button-border-radius: 0.2rem;
 }
 
 body{
@@ -41,7 +44,7 @@ body{
 .table-container{
   max-width: 100%;
   padding: 2rem 1rem;
-  border-radius: 0.5rem;
+  border-radius: var(--button-border-radius);
   box-shadow: var(--box-shadow);
   background: var(--light-clr);
 }
@@ -61,7 +64,7 @@ th, td, caption{
 
 th{
   text-align: left;
-  background: var(--main-clr-transparent);
+  background: var(--main-clr-alpha);
 
 }
 
@@ -92,8 +95,8 @@ table button{
   color: black;
   font-weight: 600;
   width: 6rem;
-  height: 3rem;
-  border-radius: 0.5rem;
+  height: 2.5rem;
+  border-radius: var(--button-border-radius);
   margin-inline: auto;
   transition: transform ease 400ms;
 }
@@ -139,15 +142,15 @@ table button:focus-visible{
 .refresh{
   background: var(--main-clr);
   color: white;
-  height: 3rem;
+  height: 2.5rem;
   width: 6rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 0 1rem rgba(0,0,0,0.2);;
-  transition: linear 0.5s;
+  border-radius: var(--button-border-radius);
+  box-shadow: var(--box-shadow);
+  transition: all ease-in-out 0.5s;
 }
 
 .refresh:hover{
-  scale: 1.05;
+  background: var(--main-clr-alpha);
 }
 
 dialog{
@@ -162,17 +165,27 @@ dialog{
 
 dialog button{
   width: 6rem;
-  height: 3rem;
-  border-radius: 0.6rem;
+  height: 2.5rem;
+  color: whitesmoke;
+  border-radius: var(--button-border-radius);
 }
 
 .delete{
-  background: var(--main-clr);
-  
+  background: var(--main-clr); 
+  transition: all ease 500ms;
+}
+.delete:hover{
+  background: var(--main-clr-alpha);
 }
 
 .cancel{
   background-color: var(--sec-clr);
+  transition: all ease 500ms;
+}
+
+.cancel:hover{
+  background: var(--main-clr-alpha);
+  
 }
 
 

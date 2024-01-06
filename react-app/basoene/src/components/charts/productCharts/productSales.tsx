@@ -30,6 +30,7 @@ import {
       plugins: {
         legend: {
           position: "right" as const,
+          display: false
         },
         title: {
           display: true,
@@ -59,7 +60,7 @@ import {
   
       return (
           
-              <div className="chart-wrapper product">
+              <div className="chart-wrapper">
                   <Bar data={chartData} options={options}/>
               </div> 
         );

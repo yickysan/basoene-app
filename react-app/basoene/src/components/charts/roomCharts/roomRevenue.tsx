@@ -30,6 +30,7 @@ import {
       plugins: {
         legend: {
           position: "right" as const,
+          display: false
         },
         title: {
           display: true,

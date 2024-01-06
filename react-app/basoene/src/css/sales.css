@@ -63,3 +63,6 @@
     background: var(--sec-clr);
 }
 
+
+@media(max-width: 600px){}
+
