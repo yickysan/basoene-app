@@ -104,7 +104,7 @@ const BookingPage = () => {
         fetch(`${process.env.REACT_APP_URL}/rooms/`)
             .then(response => {
                 if (!response.ok){
-                    throw new Error("No sales data for today!")
+                    throw new Error("Failed to fetch rooms")
                 }
                 return response.json();
             })

@@ -23,13 +23,14 @@ import {
       indexAxis: "x" as const,
       elements: {
         bar: {
-          borderWidth: 2,
+          borderWidth: 1,
         },
       },
       responsive: true,
       plugins: {
         legend: {
           position: "right" as const,
+          display: false
         },
         title: {
           display: true,

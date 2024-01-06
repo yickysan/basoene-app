@@ -27,6 +27,7 @@ import {
     plugins: {
       legend: {
         position: "top" as const,
+        display: false
       },
       title: {
         display: true,

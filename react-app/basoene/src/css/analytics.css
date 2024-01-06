@@ -1,6 +1,7 @@
 .analytics{
     width: 100%;
     height: 100svh;
+    --chart-margin-left: 3.5rem;
 }
 
 
@@ -13,8 +14,9 @@
     margin-inline: 0.5rem;
     background: var(--sec-clr);
     overflow-y: scroll;
-    scrollbar-width: 0;
-    scroll-behavior: inherit;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
 }
 
 .big-grid::-webkit-scrollbar{
@@ -91,7 +93,7 @@
         & p{
             text-align: center;
             cursor: pointer;
-            border-radius: 0.5rem;
+            border-radius: var(--border-radius);
             padding: 0.5rem;
             transition: all ease 0.5s;
         }
@@ -102,12 +104,13 @@
     background: var(--sec-clr);
 }
 
-.summary p:focus{
+.summary p:focus-visible{
     outline: 2px solid white;
 }
 
 .stat-title h3{
     padding: 0.5rem 2rem;
+    margin-left: calc(var(--chart-margin-left) - 2rem);
 }
 
 .summary-card-wrapper{
@@ -116,6 +119,7 @@
     width: 100%;
     gap: 1rem;
     padding: 2rem;
+    margin-left: calc(var(--chart-margin-left) - 2rem);
 }
 
 .summary-card{
@@ -124,7 +128,6 @@
     background: var(--light-clr);
     box-shadow: var(--box-shadow);
     border-radius: 0.5rem;
-
     }
 
 .summary-card h5{
@@ -142,15 +145,60 @@
     margin-inline: 1rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin-left: 2rem;
+    margin-left: var(--chart-margin-left);
 }
 
 .chart-wrapper{
-    width: 30rem;
+    width: 32rem;
     padding: 1rem;
-    border-radius: 0.5rem;
+    border-radius: var(--border-radius);
     background-color: var(--light-clr);
     box-shadow: var(--box-shadow);
     margin-block: 1rem;
 }
 
+
+@media(max-width: 600px){
+    .controls{
+        display: none;
+    }
+
+    .summary-card-wrapper{
+        display: grid;
+        grid-auto-flow: column;
+        margin-left: 0;
+        padding-inline: 0;
+        overflow: auto;
+    }
+
+    .summary-card{
+        width: 9.5rem;
+    }
+
+
+    .stats{
+        width: 100%;
+        grid-column: span 2;
+        padding-inline: 1rem;
+
+    }
+
+    .chart-grid{
+        width: 100%;
+        grid-template-columns: 100%;
+        margin-left: 0;
+        margin: auto;
+        
+    }
+
+    .chart-wrapper{
+        width: 100%;
+        padding: 0.5rem;
+    }
+
+    .chart-wrapper > *{
+        width: 100% !important;
+        height: 200px !important;
+    }
+
+}
