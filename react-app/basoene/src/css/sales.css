@@ -16,7 +16,7 @@
 .sales-card{
     width: 25rem;
     border-radius: 0.5rem;
-    background: var(--main-clr-transparent);
+    background: var(--light-clr);
     box-shadow: var(--box-shadow);
     padding: 1rem;
     aspect-ratio: 3/2;

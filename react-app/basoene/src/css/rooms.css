@@ -11,7 +11,7 @@
 }
 
 .room-card{
-    background: var(--main-clr-transparent);
+    background: var(--light-clr);
     width: 12rem;
     aspect-ratio: 16/9;
     padding: 1rem;
