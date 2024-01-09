@@ -1,0 +1,221 @@
+*{
+  border: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*::after, *::before{
+  border: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+a{
+  text-decoration: none;
+}
+
+:root{
+  --main-clr: rgb(165, 80, 199);
+  --sec-clr: rgb(202, 189, 207);
+  --main-clr-alpha: rgba(165, 80, 199, 0.5);
+  --light-clr: rgb(232, 235, 234);
+  --light-clr-alpha: rgb(232, 235, 234, 0.5);
+  --box-shadow: 0 0 1rem rgba(0,0,0,0.3);
+  --border-radius: 0.5rem;
+  --button-border-radius: 0.2rem;
+}
+
+body{
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.5;
+  background: var(--light-clr);
+}
+
+
+
+.table-wrapper{
+  margin-top: 5rem;
+  width: 90%;
+  margin-inline: auto;
+}
+
+.table-container{
+  max-width: 100%;
+  padding: 2rem 1rem;
+  border-radius: var(--button-border-radius);
+  box-shadow: var(--box-shadow);
+  background: var(--light-clr);
+}
+
+table{
+  border-collapse: collapse;
+  background: var(--sec-clr);
+  color: black;
+  width: 100%;
+}
+
+th, td, caption{
+  padding: 1rem;
+}
+
+
+
+th{
+  text-align: left;
+  background: var(--main-clr-alpha);
+
+}
+
+tr.empty{
+  outline: 1px solid red;
+}
+
+tr:nth-of-type(2n){
+  background: rgba(0,0,0,0.2);
+}
+
+caption{
+  background: var(--main-clr);
+  text-align: left;
+  font-size: 1.5rem;
+  font-weight: 700;
+  position: relative;
+}
+
+button{
+  cursor: pointer;
+}
+
+table button{
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: black;
+  font-weight: 600;
+  width: 6rem;
+  height: 2.5rem;
+  border-radius: var(--button-border-radius);
+  margin-inline: auto;
+  transition: transform ease 400ms;
+}
+
+table button:hover{
+  transform: translateY(-0.2rem);
+}
+
+table button:focus-visible{
+  outline: auto;
+}
+
+
+.update-btn button{
+  outline: 2px solid var(--main-clr);
+}
+
+.delete-btn button{
+  outline: 2px solid red;
+}
+
+.update-btn, .delete-btn{
+  width: 5rem;
+}
+
+.add-btn{
+  position: absolute;
+  outline: 2px solid black;
+  right: 1rem;
+  top: 0.7rem;
+ 
+}
+
+.fetch-error{
+  display: grid;
+  justify-content: center;
+  font-size: 1.5rem;
+  gap: 1rem;
+  font-weight: 500;
+  color: red;
+}
+
+.refresh{
+  background: var(--main-clr);
+  color: white;
+  height: 2.5rem;
+  width: 6rem;
+  border-radius: var(--button-border-radius);
+  box-shadow: var(--box-shadow);
+  transition: all ease-in-out 0.5s;
+}
+
+.refresh:hover{
+  background: var(--main-clr-alpha);
+}
+
+dialog{
+  color: rgba(0,0,0,);
+  translate: 1rem 2rem;
+  box-shadow: var(--box-shadow);
+  height: 12rem;
+  font-weight: 500;
+  background: var(--light-clr);
+ 
+}
+
+dialog button{
+  width: 6rem;
+  height: 2.5rem;
+  color: whitesmoke;
+  border-radius: var(--button-border-radius);
+}
+
+.delete{
+  background: var(--main-clr); 
+  transition: all ease 500ms;
+}
+.delete:hover{
+  background: var(--main-clr-alpha);
+}
+
+.cancel{
+  background-color: var(--sec-clr);
+  transition: all ease 500ms;
+}
+
+.cancel:hover{
+  background: var(--main-clr-alpha);
+  
+}
+
+
+
+dialog::backdrop{
+  background: rgba(0,0,0,0.2)
+}
+
+.flex-btn{
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 5rem;
+}
+
+
+@media(max-width: 600px){
+  table{
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 1rem;
+    margin-left: -2rem;
+  }
+  .table-wrapper{
+    margin: 0;
+    padding-inline: auto;
+  } 
+
+  /* .update-form{
+    width: 100vw;
+    inset: 0;
+  } */
+}

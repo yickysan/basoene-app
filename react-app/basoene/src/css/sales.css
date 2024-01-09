@@ -1,0 +1,68 @@
+.sales{
+    display: grid;
+    grid-template-columns: 65% 35%;
+    gap: 2rem;
+    padding: 1rem 2rem;
+    margin-top: 5rem;
+} 
+
+
+.sales caption{
+    font-size: 1.3rem;
+    width: 100%;
+}
+
+
+.sales-card{
+    width: 25rem;
+    border-radius: 0.5rem;
+    background: var(--light-clr);
+    box-shadow: var(--box-shadow);
+    padding: 1rem;
+    aspect-ratio: 3/2;
+
+    > h3{
+        text-align: center;
+    }
+}
+
+.sell {
+    display: grid;
+    gap: 1rem;
+    width: 20rem;
+    margin: auto;
+}
+
+.sales-input{
+    display: grid;
+    height: 5rem;
+
+    > input{
+        border-radius: 0.5rem;
+        padding: 1rem;
+        background: var(--sec-clr);
+    }
+
+}
+
+.submit-sales{
+    height: 3rem;
+    border-radius: 0.5rem;
+    background: var(--main-clr);
+    color: white;
+    cursor: pointer;
+    display: grid;
+    place-content: center;
+}
+
+.submit-sales .submitting{
+    width: 2rem;
+}
+
+.submit-sales:disabled{
+    background: var(--sec-clr);
+}
+
+
+@media(max-width: 600px){}
+

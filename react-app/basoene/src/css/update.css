@@ -1,0 +1,85 @@
+.form-wrapper, .overlay{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    inset: 0;
+    z-index: 10001;
+  }
+  .overlay{
+    background: rgba(0,0,0,0.2);
+  }
+  
+  .update-form{
+    position: absolute;
+    background-color: var(--light-clr);
+    inset: 8rem 50% 5rem 30%;
+    padding: 2rem 1rem;
+    width: 40rem;
+    height: 28rem;
+    box-shadow: var(--box-shadow)
+  }
+  
+  .form-inputs{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  
+  
+  
+  .form-inputs input{
+    width: 100%;
+    height: 5rem;
+    background: var(--sec-clr);
+    padding-inline: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  label{
+    font-weight: 500;
+  }
+  
+  .submit-product{
+    background: var(--main-clr);
+    font-size: 1.2rem;
+    height: 4rem;
+    grid-column: span 2;
+    margin-top: 1rem;
+    color: #fff;
+    display: grid;
+    place-content: center;
+  }
+
+  .submit-product:disabled{
+    background: var(--main-clr-alpha);
+  }
+  
+
+
+  .submitting{
+    width: 3rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #fff;
+    border-right-color: #fff;
+    border-bottom-color: #fff;
+    animation: submit 0.8s linear infinite;
+
+  }
+
+  @keyframes submit{
+    25%{
+      rotate: 0.25turn;
+    }
+    50%{
+      rotate: 0.5turn;
+    }
+    75%{
+      rotate: 0.75turn;
+    }
+    100%{
+      rotate: 1turn;
+    }
+  }
+  

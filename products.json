@@ -1,0 +1,46 @@
+{
+    "Products": [
+      {
+        "product_name": "Heineken",
+        "product_category": "Beer",
+        "unit_price": 600,
+        "quantity": 50,
+        "id": 1
+      },
+      {
+        "product_name": "Hero",
+        "product_category": "Beer",
+        "unit_price": 400,
+        "quantity": 20,
+        "id": 2
+      },
+      {
+        "product_name": "Holandia",
+        "product_category": "Juice",
+        "unit_price": 800,
+        "quantity": 15,
+        "id": 3
+      },
+      {
+        "product_name": "Chivita",
+        "product_category": "Juice",
+        "unit_price": 750,
+        "quantity": 8,
+        "id": 4
+      },
+      {
+        "product_name": "Maltina",
+        "product_category": "Malt",
+        "unit_price": 500,
+        "quantity": 30,
+        "id": 5
+      },
+      {
+        "product_name": "Amstel Malt",
+        "product_category": "Malt",
+        "unit_price": 500,
+        "quantity": 28,
+        "id": 6
+      }
+    ]
+  }
