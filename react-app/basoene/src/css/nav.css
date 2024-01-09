@@ -87,10 +87,13 @@ header{
       transform: translateX(0);
     }
 
+<<<<<<< HEAD
     .navlist.open ~ body{
       overflow-y: hidden;
     }
 
+=======
+>>>>>>> e8927e7492457a73128ec38b1f26a7267f4aa5f3
     nav > ul{
       flex-direction: column;
       margin-top: 2.6rem;
@@ -101,7 +104,11 @@ header{
       align-items: center;
       justify-content: center;
       width: var(--nav-mobile-width);
+<<<<<<< HEAD
       padding-inline: 1girem;
+=======
+      padding-inline: 1rem;
+>>>>>>> e8927e7492457a73128ec38b1f26a7267f4aa5f3
       transition: all ease-in-out 500ms;
     }
 
@@ -109,4 +116,8 @@ header{
       background: var(--main-clr-alpha);
       color: whitesmoke;
     }
+<<<<<<< HEAD
   }
+=======
+  }
+>>>>>>> e8927e7492457a73128ec38b1f26a7267f4aa5f3
