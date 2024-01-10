@@ -18,6 +18,14 @@
     height: 28rem;
     box-shadow: var(--box-shadow)
   }
+
+.close-popup{
+    background: none;
+    position: absolute;
+    left: 36.5rem;
+    top: -0.1rem;
+    bottom: 24rem
+}
   
   .form-inputs{
     display: grid;
@@ -83,3 +91,24 @@
     }
   }
   
+
+  @media(max-width: 600px){
+    .update-form{
+        width: 90vw;
+        height: fit-content;
+        inset: 2rem 0 0 1rem;
+    }
+
+    .form-inputs{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-inputs input{
+        height: 4rem;
+    }
+
+    .close-popup{
+        inset: 0 0 90% 83%;
+    }
+  }

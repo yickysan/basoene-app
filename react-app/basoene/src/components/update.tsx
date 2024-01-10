@@ -68,10 +68,7 @@ const Update = (props: UpdateProps) => {
         <div className="form-wrapper">
             <div className="overlay">
                 <form className="update-form" onSubmit={handleSubmit}>
-                    <button aria-label="close-popup"
-                    style={{background: "none",
-                            border: "none",
-                            transform: "translate(35rem, -1rem)"}}
+                    <button className="close-popup" aria-label="close-popup"
                     onClick={() => {toggleUpdate();}}>
                         <BiSolidXSquare size="2.5rem" color="var(--main-clr)" />
                     </button>

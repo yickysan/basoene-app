@@ -4,6 +4,21 @@
     --chart-margin-left: 1rem;
 }
 
+.control-btn{
+    width: 2rem;
+    aspect-ratio: 1;
+    position: absolute;
+    left: 0.5rem;
+    color: gray;
+    background: none;
+    display: none;
+    z-index: 1;
+}
+
+.control-btn.open{
+    color: var(--sec-clr);
+}
+
 
 .big-grid{
     display: grid;
@@ -160,9 +175,27 @@
 }
 
 
+
+
 @media(max-width: 600px){
     .controls{
-        display: none;
+        position: absolute;
+        bottom: -6rem;
+        height: 100svh;
+        scale: 0 1;
+        opacity: 0;
+        transform-origin: left;
+        transition: scale ease 300ms, opacity ease-in 300ms 150ms;
+    }
+
+    div[data-open="true"]{
+        scale: 1;
+        opacity: 1;
+    }
+
+    .control-btn{
+        display: grid;
+        place-content: center;
     }
 
     .summary-card-wrapper{
@@ -171,6 +204,11 @@
         margin-left: 0;
         padding-inline: 0;
         overflow: auto;
+        scrollbar-width: none;
+    }
+
+    .summary-card-wrapper::-webkit-scrollbar{
+        display: none;
     }
 
     .summary-card{

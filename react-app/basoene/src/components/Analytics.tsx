@@ -1,33 +1,42 @@
-import React from "react"
+import React from "react";
+import {ChevronRightCircle, ChevronLeftCircle} from "lucide-react";
 import ProductStats from "./productStatistics";
 import RoomStats from "./roomStatistics";
 
 import { useState } from "react";
 
+type AnalyticsPage = {page: "drinks"|"rooms"}
 
 const Analytics = () => {
     // state to change the summary statistics
     const [summary, setSummary] = useState("");
 
     // state to change category for statistics
-    const [category, setCategory] = useState("drinks");
+    const [category, setCategory] = useState<AnalyticsPage>({page: "drinks"});
 
-    const toggleCategory = (category: string): void => {
-        setCategory(category);
+    const toggleCategory = (category: "drinks"|"rooms"): void => {
+        setCategory({page: category});
     }
+
+    const [mobileControlState, setMobileControlState] = useState(false);
 
     return (
         <div className="analytics">
+            <button className={`control-btn ${mobileControlState? "open": ""}`} type="button"
+            aria-label="anlysis options control button"
+            onClick={() => {setMobileControlState(!mobileControlState)}}>
+            {mobileControlState? <ChevronLeftCircle size={20}/> : <ChevronRightCircle size={20}/>}
+            </button>
             <div className="big-grid">
-                <div className="controls">
+                <div className="controls" data-open={mobileControlState}>
                     <h2>Sales Performance</h2>
                     <div className="analysis-option">
-                        <div className={`button-container ${category === "drinks"? "active":""}`} >
+                        <div className={`button-container ${category.page === "drinks"? "active":""}`} >
                             <button type="button" 
                             onClick={() => {toggleCategory("drinks")}}>
                                 Drinks</button>
                         </div>
-                        <div className={`button-container ${category === "rooms"? "active":""}`}>
+                        <div className={`button-container ${category.page === "rooms"? "active":""}`}>
                             <button type="button"
                             onClick={() => {toggleCategory("rooms")}}>
                                 Rooms</button>
@@ -49,8 +58,8 @@ const Analytics = () => {
                     </div>
 
                 </div>
-                {category === "drinks" && <ProductStats summary={summary}/>}
-                {category === "rooms" && <RoomStats summary={summary}/>}
+                {category.page === "drinks" && <ProductStats summary={summary}/>}
+                {category.page === "rooms" && <RoomStats summary={summary}/>}
             </div>
             
         </div>

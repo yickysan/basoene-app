@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from 'react';
 import { Product } from "../App";
 import Update from "./update";
+import { PlusCircle, Pencil, Trash2 } from "lucide-react";
 
 
 interface HomeProps{
@@ -107,7 +108,8 @@ function Home(props: HomeProps) {
                 <button className="add-btn" 
                 type="button" 
                 onClick={() => {handleUpdate({id: null, product_name:"", product_category:"", quantity: 0, unit_price: 0}, "POST")}}>
-                    Add Product
+                    <span className="label">Add Product</span>
+                    <span className="icon"><PlusCircle /></span>
                 </button>
             </caption>
             <thead>
@@ -131,10 +133,16 @@ function Home(props: HomeProps) {
                                 <td>{product.quantity}</td>
                                 <td>{product.unit_price}</td>
                                 <td className="update-btn">
-                                    <button type="button" onClick={() => handleUpdate(product, "PUT")}>Update</button>
+                                    <button type="button" onClick={() => handleUpdate(product, "PUT")}>
+                                        <span className="label">Update</span>
+                                        <span className="icon"><Pencil /></span>
+                                    </button>
                                 </td>
                                 <td className="delete-btn">
-                                    <button type="button" onClick={() => {toggleModal("open", product.id as number)}}>Delete</button>
+                                    <button type="button" onClick={() => {toggleModal("open", product.id as number)}}>
+                                        <span className="label">Delete</span>
+                                        <span className="icon"><Trash2 /></span>
+                                    </button>
                                 </td>
                                
                             </tr>

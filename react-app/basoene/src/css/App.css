@@ -101,6 +101,10 @@ table button{
   transition: transform ease 400ms;
 }
 
+span.icon{
+  display: none;
+}
+
 table button:hover{
   transform: translateY(-0.2rem);
 }
@@ -202,20 +206,46 @@ dialog::backdrop{
 
 
 @media(max-width: 600px){
-  table{
-    max-width: 100%;
+  .table-container{
+    margin-top: 2rem;
+    width: 100%;
     overflow-x: auto;
     scrollbar-width: none;
-    padding: 1rem;
-    margin-left: -2rem;
   }
   .table-wrapper{
+    width: 100%;
     margin: 0;
-    padding-inline: auto;
+    padding-inline: 0.5rem;
   } 
 
-  /* .update-form{
-    width: 100vw;
-    inset: 0;
-  } */
+  
+
+  table button{
+    width: 2rem;
+    aspect-ratio: 1;
+    display: grid;
+    place-content: center;
+  }
+
+  .update-btn button, .delete-btn button{
+    outline: none;
+    color: var(--main-clr);
+  }
+  
+  .delete-btn button{
+    outline: none;
+    color: red;
+  }
+
+  .add-btn{
+    outline: none;
+  }
+
+  span.label{
+    display: none;
+  }
+
+  span.icon{
+    display: inline;
+  }
 }
