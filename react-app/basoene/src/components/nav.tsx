@@ -12,6 +12,7 @@ const Nav = () => {
     const [mobileNavState, setMobileNavState] = useState<mobileNavState>({state: "close"});
 
     const toggleMobileNav = () => {
+    
         mobileNavState.state === "open"? setMobileNavState({state: "close"}) : setMobileNavState({state: "open"});
     }
 
@@ -28,13 +29,12 @@ const Nav = () => {
             <picture className="logo">
                 <img src={basoenelogo} alt="logo for basoene snug"></img>
            </picture>
-            <nav className={`navlist ${mobileNavState.state}`} 
-            aria-expanded={mobileNavState.state === "open"? "true" : "false"}>
+            <nav className={`navlist ${mobileNavState.state}`} >
                 <ul>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/sales">Sales</Link></li>
-                    <li><Link to="/rooms">Rooms</Link></li>
-                    <li><Link to="/analytics">Analytics</Link></li>
+                    <li><Link onClick={toggleMobileNav} to="/">Home</Link></li>
+                    <li><Link onClick={toggleMobileNav} to="/sales">Sales</Link></li>
+                    <li><Link onClick={toggleMobileNav} to="/rooms">Rooms</Link></li>
+                    <li><Link onClick={toggleMobileNav} to="/analytics">Analytics</Link></li>
                 </ul>
             </nav>
         </header>

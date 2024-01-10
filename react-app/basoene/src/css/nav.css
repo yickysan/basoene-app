@@ -69,35 +69,44 @@ header{
 
     .mobile-nav-toggle{
       display: block;
-      z-index: 1;
     }
 
     .navlist{
-      --nav-mobile-width: 14rem;
+      --nav-mobile-width: 100%;
       position: absolute;
-      background: var(--light-clr-alpha);
-      backdrop-filter: blur(1.5rem);
-      height: 100svh;
-      width: 16rem;
-      transform: translateX(-100vw);
-      transition: 500ms linear;
+      top: 5.5rem;
+      left: 0.5rem;
+      display: grid;
+      justify-content: center;
+      background: var(--light-clr);
+      width: calc(100% - 1rem);
+      border-radius: var(--button-border-radius);
+      box-shadow: var(--box-shadow);
+      z-index: -10;
+      overflow: clip();
+      scale: 1 0;
+      opacity: 0;
+      transition: scale ease 300ms, opacity ease-in 300ms 150ms;
+      transform-origin: top;
+      
     }
 
     .navlist.open{
-      transform: translateX(0);
+      scale: 1;
+      opacity: 1;
     }
 
     nav > ul{
       flex-direction: column;
-      margin-top: 2.6rem;
+      align-items: center;
     }
 
     nav a{
       display: flex;
       align-items: center;
       justify-content: center;
-      width: var(--nav-mobile-width);
-      padding-inline: 1rem;
+      width: 90vw;
+      border-radius: var(--button-border-radius);
       transition: all ease-in-out 500ms;
     }
 
