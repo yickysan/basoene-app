@@ -43,7 +43,8 @@ body{
 
 .table-container{
   max-width: 100%;
-  padding: 2rem 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
   border-radius: var(--button-border-radius);
   box-shadow: var(--box-shadow);
   background: var(--light-clr);
@@ -206,12 +207,28 @@ dialog::backdrop{
 
 
 @media(max-width: 600px){
+
   .table-container{
     margin-top: 2rem;
-    width: 100%;
-    overflow-x: auto;
-    scrollbar-width: none;
+    margin-bottom: 2rem;
+    padding: 0.5rem;
   }
+
+  th{
+    display: none;
+  }
+  td{
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 15ch auto;
+    padding: 0.5rem, 1rem;
+  }
+
+  td:not(.delete-btn, .update-btn)::before{
+    content: attr(data-name) ":";
+    font-weight: bold;
+  }
+
   .table-wrapper{
     width: 100%;
     margin: 0;
@@ -230,15 +247,23 @@ dialog::backdrop{
   .update-btn button, .delete-btn button{
     outline: none;
     color: var(--main-clr);
+    position: absolute;
+  }
+
+  tr{
+    position: relative;
   }
   
   .delete-btn button{
     outline: none;
     color: red;
+    bottom: 0.5rem;
+    right: 0.5rem;
   }
 
   .add-btn{
     outline: none;
+    top: 1rem;
   }
 
   span.label{

@@ -64,5 +64,21 @@
 }
 
 
-@media(max-width: 600px){}
+@media(max-width: 600px){
+    .sales{
+        margin-top: 3rem;
+        grid-template-columns: 100%;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .sales-card{
+        width: 100%;
+        grid-row: 1 / 2;
+    }
+
+    .sell{
+        width: 100%;
+    }
+}
 

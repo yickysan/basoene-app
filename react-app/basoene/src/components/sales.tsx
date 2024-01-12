@@ -89,7 +89,7 @@ const SalesPage = (props: SalesProps) => {
         <div className="sales">
        
             <div className="table-container">
-                <table className="sales-table">
+                <table className="sales-table" role="table">
                     <caption>Today's Sales
                         <p>Total - NGN ₦{totalSales()}</p>
                     </caption>
@@ -106,13 +106,13 @@ const SalesPage = (props: SalesProps) => {
                     </thead>
                     <tbody>
                         {sales.map((data: SalesData) => (
-                            <tr key={data.ProductSales.id}>
-                                <td>{data.product_name}</td>
-                                <td>{data.ProductSales.time.substring(0, 10)}</td>
-                                <td>{data.ProductSales.time.substring(11, 16)}</td>
-                                <td>{data.ProductSales.quantity}</td>
-                                <td>{data.unit_price}</td>
-                                <td>{data.unit_price * data.ProductSales.quantity}</td>
+                            <tr key={data.ProductSales.id} role="row">
+                                <td data-name="Drink" role="cell">{data.product_name}</td>
+                                <td data-name="Date" role="cell">{data.ProductSales.time.substring(0, 10)}</td>
+                                <td data-name="Time" role="cell">{data.ProductSales.time.substring(11, 16)}</td>
+                                <td data-name="Quantity" role="cell">{data.ProductSales.quantity}</td>
+                                <td data-name="Unit Price (₦)" role="cell">{data.unit_price}</td>
+                                <td data-name="Total (₦)" role="cell">{data.unit_price * data.ProductSales.quantity}</td>
                             </tr>
                             
                             

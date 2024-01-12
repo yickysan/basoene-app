@@ -67,6 +67,12 @@ header{
   
   @media(max-width: 600px){
 
+    header img{
+      width: 15rem;
+      margin-left: 5rem;
+      margin-top: -0.5rem;
+    }
+
     .mobile-nav-toggle{
       display: block;
     }
@@ -85,14 +91,16 @@ header{
       z-index: -10;
       overflow: clip();
       scale: 1 0;
+      transform: scaleY(0);
       opacity: 0;
-      transition: scale ease 300ms, opacity ease-in 300ms 150ms;
+      transition: scale ease 500ms, opacity ease-in 500ms 150ms, transform ease 500ms;
       transform-origin: top;
       
     }
 
     .navlist.open{
       scale: 1;
+      transform: scaleY(1);
       opacity: 1;
     }
 
@@ -107,11 +115,17 @@ header{
       justify-content: center;
       width: 90vw;
       border-radius: var(--button-border-radius);
-      transition: all ease-in-out 500ms;
+      transition: background ease 500ms, color ease 500ms;
     }
 
     nav a:focus-visible, nav a:hover{
       background: var(--main-clr-alpha);
       color: whitesmoke;
+    }
+  }
+
+  @media(max-width: 280px){
+    header img{
+      margin-left: 2.5rem;
     }
   }

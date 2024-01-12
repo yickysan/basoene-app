@@ -3,11 +3,24 @@
     margin-inline: 1rem;
 }
 
-.flex-body{
-    display: flex;
+.room-card-container{
+    display: grid;
     gap: 1rem;
-    flex-wrap: wrap;
+    grid-auto-flow: column;
+    grid-auto-columns: 12rem;
+    overflow-x: auto;
+    scrollbar-width: none;
     padding: 1rem;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+}
+
+.room-card-container > * {
+    scroll-snap-align: start;
+}
+
+.room-card-container::-webkit-scrollbar{
+    display: none;
 }
 
 .room-card{
@@ -36,4 +49,15 @@
 }
 
 
-@media(max-width: 600px){}
+@media(max-width: 600px){
+    .room-grid{
+        grid-template-columns: 100%;
+        gap: 1rem;
+        padding: 0.5rem;
+    }
+
+    .room-card-container{
+        padding-inline: 0.5rem;
+    }
+
+}

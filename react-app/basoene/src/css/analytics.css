@@ -1,7 +1,7 @@
 .analytics{
     width: 100%;
     height: 100svh;
-    --chart-margin-left: 1rem;
+    --chart-margin-left: 3rem;
 }
 
 .control-btn{
@@ -29,9 +29,7 @@
     margin-inline: 0.5rem;
     background: var(--sec-clr);
     overflow-y: scroll;
-    overflow-x: scroll;
     scrollbar-width: none;
-    scroll-behavior: smooth;
     gap: 0.5rem;
 }
 
@@ -50,7 +48,7 @@
     & h2{
         text-align: center;
         color: white;
-        margin-top: 1rem;
+        margin-top: 2rem;
     }
 }
 
@@ -178,18 +176,25 @@
 
 
 @media(max-width: 600px){
+
+    .analytics{
+        --chart-margin-left: 1rem;
+    }
+
     .controls{
         position: absolute;
         bottom: -6rem;
         height: 100svh;
         scale: 0 1;
+        transform: scaleX(0);
         opacity: 0;
         transform-origin: left;
-        transition: scale ease 300ms, opacity ease-in 300ms 150ms;
+        transition: scale ease 300ms, opacity ease-in 300ms 150ms, transform ease 300ms;
     }
 
     div[data-open="true"]{
         scale: 1;
+        transform: scaleX(1);
         opacity: 1;
     }
 
@@ -205,6 +210,12 @@
         padding-inline: 0;
         overflow: auto;
         scrollbar-width: none;
+        overscroll-behavior-inline: contain;
+        scroll-snap-type: inline mandatory;
+    }
+    
+    .summary-card-wrapper > * {
+        scroll-snap-align: start;
     }
 
     .summary-card-wrapper::-webkit-scrollbar{
