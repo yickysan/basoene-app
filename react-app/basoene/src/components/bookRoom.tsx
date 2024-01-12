@@ -67,6 +67,8 @@ const BookRoom = (props: BookRoomProps) => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault()
+        setRoomName("");
+        setBookingType("");
         setSubmitting(true);
         const requiredRoom = rooms.filter((room) => (room.room_name === roomName))[0];
         const roomId = requiredRoom.id;
@@ -81,10 +83,6 @@ const BookRoom = (props: BookRoomProps) => {
                 setSubmitting(false);
                 setStatusAvailabity(roomName, bookingType);
             }).then(() => {fetchBookings();})
-            .then(() => {
-                setRoomName("");
-                setBookingType("");
-            })
     
         }
 
@@ -94,8 +92,10 @@ const BookRoom = (props: BookRoomProps) => {
             <div className="sales-input">
                 <label>Rooms</label>
                 <input name="Rooms" 
+                value={roomName}
                 list="room-list" 
-                onChange={(e) =>{setRoomName(e.target.value)}}
+                onChange={(e) =>{setRoomName(e.target.value);}}
+                onFocus={(e) => {setRoomName("");}}
                 required/>
                 <datalist id = "room-list">
                     {
@@ -113,7 +113,9 @@ const BookRoom = (props: BookRoomProps) => {
                 <label>Booking type</label>
                 <input name="Booking type" 
                     list="booking-type" 
-                    onChange={(e) =>{setBookingType(e.target.value)}}
+                    value={bookingType}
+                    onChange={(e) =>{setBookingType(e.target.value);}}
+                    onFocus={(e) => {setBookingType("");}}
                     required/>
                     <datalist id = "booking-type">
                         <option value="Short"/>
