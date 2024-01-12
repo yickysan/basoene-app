@@ -12,7 +12,7 @@ const RoomsCard = (props: RoomsProp) => {
 
         
     return (
-        <div className="flex-body">
+        <div className="room-card-container">
             {rooms.map((room: Rooms) => (
                 <div id= {room.room_name} key={room.id} className="room-card">
                     <h5>{room.room_name}</h5>

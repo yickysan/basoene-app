@@ -103,7 +103,7 @@ function Home(props: HomeProps) {
         </dialog>
        
         <div className="table-container">
-            <table>
+            <table role="table">
             <caption>List of Drinks Sold
                 <button className="add-btn" 
                 type="button" 
@@ -127,18 +127,19 @@ function Home(props: HomeProps) {
                
                 {data.map((product: Product) =>(
                             <tr key={product.id} 
-                            className={product.quantity === 0? "empty": "not-empty"}>
-                                <td>{product.product_name}</td>
-                                <td>{product.product_category}</td>
-                                <td>{product.quantity}</td>
-                                <td>{product.unit_price}</td>
-                                <td className="update-btn">
+                            className={product.quantity === 0? "empty": "not-empty"}
+                            role="row">
+                                <td data-name="Drink" role="cell">{product.product_name}</td>
+                                <td data-name="Category" role="cell">{product.product_category}</td>
+                                <td data-name="Quantity" role="cell">{product.quantity}</td>
+                                <td data-name="Unit Price (₦)">{product.unit_price}</td>
+                                <td className="update-btn" role="button">
                                     <button type="button" onClick={() => handleUpdate(product, "PUT")}>
                                         <span className="label">Update</span>
                                         <span className="icon"><Pencil /></span>
                                     </button>
                                 </td>
-                                <td className="delete-btn">
+                                <td className="delete-btn" role="button">
                                     <button type="button" onClick={() => {toggleModal("open", product.id as number)}}>
                                         <span className="label">Delete</span>
                                         <span className="icon"><Trash2 /></span>

@@ -128,7 +128,7 @@ const BookingPage = () => {
 
             <div className="room-grid">
                 <div className="table-container">
-                    <table className="bookings-table">
+                    <table className="bookings-table" role="table">
                         <caption>Today's Amount
                             <p>Total - NGN ₦{totalAmount()}</p>
                         </caption>
@@ -137,19 +137,19 @@ const BookingPage = () => {
                                 <th>Room</th>
                                 <th>Date</th>
                                 <th>Time</th>
-                                <th>type</th>
+                                <th>Type</th>
                                 <th>Amount (₦)</th>
 
                             </tr>
                         </thead>
                         <tbody>
                             {bookings.map((data: BookingData) => (
-                                <tr key={data.Bookings.id}>
-                                    <td>{data.room_name}</td>
-                                    <td>{data.Bookings.booking_date}</td>
-                                    <td>{data.Bookings.time.substring(11, 16)}</td>
-                                    <td>{data.Bookings.booking_type}</td>
-                                    <td>{data.Bookings.booking_type.toLowerCase() === "short"?
+                                <tr key={data.Bookings.id} role="row">
+                                    <td data-name="Room" role="cell">{data.room_name}</td>
+                                    <td data-name="Date" role="cell">{data.Bookings.booking_date}</td>
+                                    <td data-name="Time" role="cell">{data.Bookings.time.substring(11, 16)}</td>
+                                    <td data-name="Type" role="cell">{data.Bookings.booking_type}</td>
+                                    <td data-name="Amount" role="cell">{data.Bookings.booking_type.toLowerCase() === "short"?
                                         data.price_short: data.price_full}</td>
                                 </tr>
                                 
