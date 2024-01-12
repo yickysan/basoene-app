@@ -22,6 +22,8 @@ const SellProduct = (props: SellProps) => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault()
+        setFormProduct("");
+        setFormQuantity(0);
         setSubmitting(true);
         const requiredProduct = productData.filter((product) => (product.product_name === formProduct))[0];
         const productId = requiredProduct.id;
@@ -36,7 +38,6 @@ const SellProduct = (props: SellProps) => {
             }).then(() => {
                 setSubmitting(false);
             }).then(() => {fetchSales();})
-            .then(() => {setFormProduct(""); setFormQuantity(0);})
 
         fetch(`${process.env.REACT_APP_URL}/products/` + productId, {
             method : "PUT", 
@@ -54,8 +55,10 @@ const SellProduct = (props: SellProps) => {
                 <div className="sales-input">
                     <label>Drinks</label>
                     <input name="Drink" 
+                    value={formProduct}
                     list="drink-list" 
-                    onChange={(e) =>{setFormProduct(e.target.value)}}
+                    onChange={(e) =>{setFormProduct(e.target.value);}}
+                    onFocus={(e) => {setFormProduct("");}}
                     required/>
                     <datalist id = "drink-list">
                         {
