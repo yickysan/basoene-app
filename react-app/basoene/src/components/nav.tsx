@@ -2,6 +2,7 @@ import { useState} from "react"
 import { Link } from "react-router-dom"
 import {Menu, X } from "lucide-react"
 import basoenelogo from"../images/basoenelogo.png"
+import SVGLogo from "./svgLogo"
 
 type mobileNavState = {
     state: "open" | "close"
@@ -27,7 +28,7 @@ const Nav = () => {
                 {mobileNavState.state === "open"? <X size={42}/> : <Menu size={42}/>} 
             </button>
             <picture className="logo">
-                <img src={basoenelogo} alt="logo for basoene snug"></img>
+                <SVGLogo />
            </picture>
             <nav className={`navlist ${mobileNavState.state}`} >
                 <ul>

@@ -70,7 +70,7 @@ th{
 }
 
 tr.empty{
-  outline: 1px solid red;
+  border: 1px solid red;
 }
 
 tr:nth-of-type(2n){
@@ -264,6 +264,7 @@ dialog::backdrop{
   .add-btn{
     outline: none;
     top: 1rem;
+    right: 0.5rem;
   }
 
   span.label{
@@ -272,5 +273,11 @@ dialog::backdrop{
 
   span.icon{
     display: inline;
+  }
+}
+
+@media(max-width: 280px){
+  caption{
+    font-size: 1.2rem;
   }
 }
