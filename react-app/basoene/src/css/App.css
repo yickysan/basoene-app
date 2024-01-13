@@ -264,6 +264,7 @@ dialog::backdrop{
   .add-btn{
     outline: none;
     top: 1rem;
+    right: 0.5rem;
   }
 
   span.label{
