@@ -33,7 +33,15 @@ header{
   }
 
   .logo{
-    overflow: clip;
+    display: grid;
+    place-content: center;
+
+  }
+
+  .logo-text{
+    fill: var(--main-clr);
+    width: 22rem;
+    aspect-ratio: 1;
   }
   
   nav ul{
@@ -67,10 +75,13 @@ header{
   
   @media(max-width: 600px){
 
-    header img{
+    .logo{
       width: 15rem;
       margin-left: 5rem;
-      margin-top: -0.5rem;
+    }
+
+    .logo-text{
+      width: 20rem;
     }
 
     .mobile-nav-toggle{
@@ -125,7 +136,11 @@ header{
   }
 
   @media(max-width: 280px){
-    header img{
+    .logo{
       margin-left: 2.5rem;
+    }
+
+    .logo-text{
+      width: 15rem;
     }
   }

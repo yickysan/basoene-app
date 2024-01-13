@@ -15,16 +15,15 @@ form-wrapper, .overlay{
     inset: 8rem 50% 5rem 30%;
     padding: 2rem 1rem;
     width: 40rem;
-    height: 28rem;
+    height: fit-content;
     box-shadow: var(--box-shadow)
   }
 
 .close-popup{
     background: none;
     position: absolute;
-    left: 36.5rem;
-    top: -0.1rem;
-    bottom: 24rem
+    right: 0.4rem;
+    bottom: 20.6rem
 }
   
   .form-inputs{
