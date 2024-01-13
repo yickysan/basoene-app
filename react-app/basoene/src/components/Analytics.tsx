@@ -33,12 +33,20 @@ const Analytics = () => {
                     <div className="analysis-option">
                         <div className={`button-container ${category.page === "drinks"? "active":""}`} >
                             <button type="button" 
-                            onClick={() => {toggleCategory("drinks")}}>
+                            onClick={() => {
+                                toggleCategory("drinks"); 
+                                setMobileControlState(!mobileControlState);
+                                }
+                                }>
                                 Drinks</button>
                         </div>
                         <div className={`button-container ${category.page === "rooms"? "active":""}`}>
                             <button type="button"
-                            onClick={() => {toggleCategory("rooms")}}>
+                            onClick={() => {
+                                toggleCategory("rooms");
+                                setMobileControlState(!mobileControlState);
+                                }
+                                }>
                                 Rooms</button>
                         </div>
                         </div>

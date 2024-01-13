@@ -185,17 +185,17 @@
         position: absolute;
         bottom: -6rem;
         height: 100svh;
-        scale: 0 1;
-        transform: scaleX(0);
-        opacity: 0;
+        /* scale: 0 1; */
+        transform: translateX(-100vw);
+        /* opacity: 0; */
         transform-origin: left;
-        transition: scale ease 300ms, opacity ease-in 300ms 150ms, transform ease 300ms;
+        transition: transform ease 500ms;
     }
 
     div[data-open="true"]{
-        scale: 1;
-        transform: scaleX(1);
-        opacity: 1;
+        /* scale: 1; */
+        transform: translateX(0);
+        /* opacity: 1; */
     }
 
     .control-btn{
@@ -206,7 +206,7 @@
     .summary-card-wrapper{
         display: grid;
         grid-auto-flow: column;
-        margin-left: 0;
+        margin-left: -0.2rem;
         padding-inline: 0;
         overflow: auto;
         scrollbar-width: none;
@@ -245,6 +245,7 @@
     .chart-wrapper{
         width: 100%;
         padding: 0.5rem;
+        margin-left: -0.2rem;
     }
 
     .chart-wrapper > *{
