@@ -75,7 +75,7 @@ const BookRoom = (props: BookRoomProps) => {
 
         const newBooking = {room_id: roomId, booking_type: bookingType}
 
-        fetch("http://localhost:8000/bookings", {
+        fetch(`${process.env.REACT_APP_URL}/bookings`, {
                 method : "POST", 
                 headers : {"Content-Type": "application/json"},
                 body : JSON.stringify(newBooking)
