@@ -4,6 +4,7 @@
 }
 
 .room-card-container{
+    background-color: var(--light-clr);
     display: grid;
     gap: 1rem;
     grid-auto-flow: column;

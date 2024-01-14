@@ -7,7 +7,7 @@ header{
     inset: 0;
     background: var(--light-clr);
     z-index: 1000;
-    box-shadow: 0 0 1rem var(--main-clr-alpha);
+    box-shadow: 0 0 0.2rem var(--main-clr-alpha);
   }
 
   .mobile-nav-toggle{

@@ -22,7 +22,7 @@ a{
   --main-clr-alpha: rgba(165, 80, 199, 0.5);
   --light-clr: rgb(232, 235, 234);
   --light-clr-alpha: rgb(232, 235, 234, 0.5);
-  --box-shadow: 0 0 1rem rgba(0,0,0,0.3);
+  --box-shadow: 0 0 0.2rem rgba(0,0,0,0.3);
   --border-radius: 0.5rem;
   --button-border-radius: 0.2rem;
 }

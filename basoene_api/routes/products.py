@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from fastapi import Response, Depends, HTTPException
 from sqlmodel import Session, select
 from typing import Generator
-from basoene_api.models.products import Products, ProductsPost, engine
+from basoene_api.models.products import Products, ProductsPost, ProductUpdate, engine
 
 router = APIRouter()
 
@@ -42,7 +42,7 @@ async def add_product(product: ProductsPost, session: Session = Depends(get_sess
 
 @router.put("/products/{id}", response_model = Products)
 async def update_product(id: int, 
-                   product: Products,
+                   product: ProductUpdate,
                    response: Response,
                    session: Session = Depends(get_session)):
     
