@@ -23,10 +23,15 @@ class Bookings(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     booking_date: date = Field(default_factory=date.today, nullable=False)
     time: datetime = Field(default_factory=datetime.now, nullable=False)
-    customer_name = str
     booking_type: str
     room_id: int = Field(foreign_key="products.id")
 
+
+class RoomsUpdate(BaseModel):
+    room_name: Optional[str] = None 
+    room_type: Optional[str] = None
+    price_short: Optional[int] = None
+    price_full: Optional[int] = None
 
 class RoomsAdd(BaseModel):
     room_name: str 
@@ -36,7 +41,6 @@ class RoomsAdd(BaseModel):
 
 
 class BookRoom(BaseModel):
-    customer_name = str
     booking_type: str
     room_id: int
 

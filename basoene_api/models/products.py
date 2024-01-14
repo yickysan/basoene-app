@@ -25,6 +25,13 @@ class ProductSales(SQLModel, table=True):
 
 
 
+class ProductUpdate(BaseModel):
+    product_name: Optional[str] = None 
+    product_category: Optional[str] = None
+    unit_price: Optional[int] = None
+    quantity: Optional[int] = None
+    
+
 class ProductsPost(BaseModel):
     product_name: str 
     product_category: str

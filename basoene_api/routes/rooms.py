@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from fastapi import Response, Depends, HTTPException
 from sqlmodel import Session, select
 from typing import Generator
-from basoene_api.models.rooms import Rooms, RoomsAdd, engine
+from basoene_api.models.rooms import Rooms, RoomsAdd, RoomsUpdate, engine
 
 router = APIRouter()
 
@@ -43,7 +43,7 @@ async def add_room(room: RoomsAdd, session: Session = Depends(get_session)):
 
 @router.put("/rooms/{id}", response_model = Rooms)
 async def update_room(id: int, 
-                   room: Rooms,
+                   room: RoomsUpdate,
                    response: Response,
                    session: Session = Depends(get_session)):
     
