@@ -5,53 +5,41 @@ from typing import Generator
 from datetime import date
 from basoene_api.models.products import ProductSales, Products, SalesPost
 from basoene_api.routes.products import get_session
+from basoene_api.db.sales import (
+    db_sales,
+    db_get_todays_sale,
+    db_get_sales,
+    db_add_sales,
+    NoSalesError
+)
 
 router = APIRouter()
 
 @router.get("/sales") 
 async def sales(session: Session = Depends(get_session)):
     
-    query = select(Products.product_name, Products.unit_price, ProductSales).where(Products.id == ProductSales.product_id)
-    result = session.exec(query).all()
-    return result
+   return db_sales(session)
 
 
 @router.get("/sales/today")
-async def get_todays_sale(response: Response, session: Session = Depends(get_session)):
-    sales = session.exec(
-        (select(Products.product_name, Products.unit_price, ProductSales)
-         .where(Products.id == ProductSales.product_id)
-         .where(ProductSales.sale_date == date.today())
-         .order_by(ProductSales.time.desc())
-         )
-    ).all()
+async def get_todays_sale(session: Session = Depends(get_session)):
+    try:
+        return db_get_todays_sale(session)
 
-    if len(sales) < 1:
+    except NoSalesError:
         raise HTTPException(status_code=404, headers={"message": "No sales have been made today"})
-
-    return sales
 
 
 @router.get("/sales/{date}")
 async def get_sale(date: str, response: Response, session: Session = Depends(get_session)):
 
-    sales = session.exec(
-        (select(Products.product_name, Products.unit_price, ProductSales)
-         .where(Products.id == ProductSales.product_id)
-         .where(ProductSales.sale_date == date)
-         )
-    ).all()
+    try:
+        return db_get_sales(date, session)
 
-    if len(sales) < 1:
-         raise HTTPException(status_code=404, headers={"message": "No sales record exist"})
+    except NoSalesError:
+        raise HTTPException(status_code=404, headers={"message": "No sales was made on this date"})
     
-    return sales
     
 @router.post("/sales", response_model = ProductSales)
 async def add_sales(sales: SalesPost, session: Session = Depends(get_session)):
-    db_sales = ProductSales.from_orm(sales)
-    session.add(db_sales)
-    session.commit()
-    session.refresh(db_sales)
-
-    return db_sales
+    return db_add_sales(sales, session)
