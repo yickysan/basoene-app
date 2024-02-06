@@ -48,6 +48,8 @@ class SalesPost(BaseModel):
     product_id: int
     quantity: int
 
+    
+
 
 
 
