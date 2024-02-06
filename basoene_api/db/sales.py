@@ -1,7 +1,6 @@
 from sqlmodel import Session, select
 from basoene_api.models.products import ProductSales, Products, SalesPost
 from datetime import date
-from typing import Generator
 
 class NoSalesError(Exception):
     ...
