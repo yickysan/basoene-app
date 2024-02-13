@@ -3,6 +3,14 @@ from fastapi import Response, Depends, HTTPException
 from sqlmodel import Session, select
 from typing import Generator
 from basoene_api.models.rooms import Rooms, RoomsAdd, RoomsUpdate, engine
+from basoene_api.db.rooms import(
+    db_room_home,
+    db_get_room,
+    db_add_room,
+    db_update_room,
+    db_delete_room,
+    RoomNotFoundError
+)
 
 router = APIRouter()
 
@@ -14,69 +22,47 @@ def get_session() -> Generator[Session, None, None]:
 @router.get("/rooms", response_model = list[Rooms])
 async def room_home(session: Session = Depends(get_session)):
     
-    query = select(Rooms)
-    result = session.exec(query).all()
-    return result
+    return db_room_home(session)
 
 
 @router.get("/rooms/{room_name}/", response_model = list[Rooms])
-async def get_room(room_name: str, response: Response, session: Session = Depends(get_session)):
+async def get_room(room_name: str, session: Session = Depends(get_session)):
 
-    rooms = session.exec(
-        select(Rooms).where(Rooms.room_name == room_name)
-    ).all()
+    try:
+        return db_get_room(room_name, session)
 
-    if len(rooms) < 1:
+    except RoomNotFoundError:
         raise HTTPException(status_code=404, headers={"message": "Room not found"})
     
-    return rooms
     
 @router.post("/rooms", response_model = Rooms)
 async def add_room(room: RoomsAdd, session: Session = Depends(get_session)):
-    db_room = Rooms.from_orm(room)
-    session.add(db_room)
-    session.commit()
-    session.refresh(db_room)
-
-    return room
+    return db_add_room(room, session)
 
 
 @router.put("/rooms/{id}", response_model = Rooms)
 async def update_room(id: int, 
                    room: RoomsUpdate,
-                   response: Response,
                    session: Session = Depends(get_session)):
     
-    db_room = session.get(Rooms, id)
+    try:
+        return db_update_room(id, room, session)
 
-    if not db_room:
+    except RoomNotFoundError:
         raise HTTPException(status_code=404, headers={"message": "Room not found"})
-
-    updated_data = room.dict(exclude_unset=True)
-
-    for k, v in updated_data.items():
-        setattr(db_room, k, v)
-
-    session.add(db_room)
-    session.commit()
-    session.refresh(db_room)
-
-    return db_room
 
 
 @router.delete("/rooms/{id}", response_model = str)
-async def delete_room(id: int, 
-                   response: Response,
-                   session: Session = Depends(get_session)):
+async def delete_room(id: int, session: Session = Depends(get_session)):
     
-    room = session.get(Rooms, id)
+    try:
+        db_delete_room(id, session)
+        return Response(status_code=200)
 
-    if not room:
+    except RoomNotFoundError:
         raise HTTPException(status_code=404, headers={"message": "Room not found"})
     
-    session.delete(room)
-    session.commit()
 
-    return Response(status_code=200)
+    
 
 
